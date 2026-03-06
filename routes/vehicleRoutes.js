@@ -44,7 +44,7 @@ import {
   showEditVehicle,
   updateVehicle,
   deleteVehicle
-} from "../controllers/vehiclecontroller.js";
+} from "../controllers/vehicleController.js";
 
 import { isAuthenticated } from "../middleware/authMiddleware.js";
 import uploadVehicle from "../middleware/uploadVehicle.js";
