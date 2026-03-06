@@ -1,0 +1,318 @@
+body {
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: linear-gradient(135deg,#b5dbf59e, #fccbea7e); /* soft gradient for classic feel */
+  padding: 40px;
+  min-height: 100vh;
+}
+
+.history-container {
+  max-width: 900px;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.95); /* subtle overlay to make text pop */
+  padding: 30px 28px;
+  border-radius: 16px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.1);
+}
+
+h2 {
+  margin-bottom: 24px;
+  color: #1d2671;
+  text-align: center;
+  font-size: 28px;
+  letter-spacing: 0.5px;
+}
+
+.history-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.history-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.15);
+}
+
+.history-card h3 {
+  margin: 0 0 6px;
+  color: #0d1a57;
+  font-size: 18px;
+}
+
+.history-card p {
+  margin: 3px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+/* STATUS TAGS */
+.status {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  min-width: 100px;
+}
+
+.status.pending { background: #fff3cd; color: #856404; }
+.status.approved { background: #d1ecf1; color: #0c5460; }
+.status.in-service { background: #cce5ff; color: #004085; }
+.status.ready { background: #e2e3ff; color: #383d7c; }
+.status.delivered { background: #d4edda; color: #155724; }
+
+.back-link {
+  display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(135deg, #1d2671, #c33764);
+    padding: 10px 22px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: 0.3s;
+    margin-bottom: 15px;
+}
+
+.back-link:hover {
+  color: #0d1a57;
+  border-color: #0d1a57;
+}
+
+.empty {
+  background: #fdfdfd;
+  padding: 20px;
+  border-radius: 14px;
+  text-align: center;
+  font-size: 16px;
+  color: #555;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+.cancel-btn {
+  margin-top: 8px;
+  padding: 6px 12px;
+  background: #dc2626;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.cancel-btn:hover {
+  background: #b91c1c;
+}
+/* ================= HEADER IMPROVEMENT ================= */
+
+.history-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.history-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 30%;
+  width: 40%;
+  height: 4px;
+  background: linear-gradient(90deg, #1d2671, #c33764);
+  border-radius: 0 0 10px 10px;
+}
+
+/* ================= CARD LAYOUT IMPROVEMENT ================= */
+
+.history-card {
+  position: relative;
+  border-left: 5px solid #1d2671;
+  gap: 20px;
+}
+
+/* Better left spacing */
+.history-card .left {
+  flex: 1;
+}
+
+/* Right section aligned properly */
+.history-card .right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+/* ================= STATUS MODERN STYLE ================= */
+
+.status {
+  padding: 7px 18px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* ================= PAY BUTTON ================= */
+
+.pay-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 18px;
+  background: linear-gradient(135deg, #1d2671, #c33764);
+  color: white;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.pay-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(29,38,113,0.35);
+}
+
+/* ================= INVOICE BUTTON ================= */
+
+.invoice-btn {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 7px 16px;
+  background: #ffffff;
+  border: 2px solid #1d2671;
+  color: #1d2671;
+  border-radius: 25px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.invoice-btn:hover {
+  background: #1d2671;
+  color: white;
+}
+
+/* ================= CANCEL BUTTON IMPROVED ================= */
+
+.cancel-btn {
+  border-radius: 20px;
+  font-weight: 600;
+  padding: 6px 16px;
+}
+
+/* ================= HOVER EFFECT ================= */
+
+.history-card:hover {
+  border-left-color: #c33764;
+}
+
+/* ================= RESPONSIVE FIX ================= */
+
+/* ================= MOBILE RESPONSIVE IMPROVEMENT ================= */
+
+@media (max-width: 992px) {
+  body {
+    padding: 25px;
+  }
+
+  .history-container {
+    padding: 25px 20px;
+  }
+}
+
+/* Tablet & Mobile */
+@media (max-width: 768px) {
+
+  body {
+    padding: 18px;
+  }
+
+  .history-container {
+    padding: 20px 16px;
+    border-radius: 14px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  .history-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 18px;
+    gap: 12px;
+  }
+
+  .history-card .left {
+    width: 100%;
+  }
+
+  .history-card .right {
+    width: 100%;
+    align-items: flex-start;
+    margin-top: 8px;
+  }
+
+  .status {
+    min-width: auto;
+    width: fit-content;
+  }
+
+  .pay-btn,
+  .invoice-btn,
+  .cancel-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .back-link {
+    display: block;
+    text-align: center;
+  }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+
+  body {
+    padding: 12px;
+  }
+
+  .history-container {
+    padding: 16px 14px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .history-card {
+    padding: 15px;
+  }
+
+  .history-card h3 {
+    font-size: 16px;
+  }
+
+  .history-card p {
+    font-size: 13px;
+  }
+
+  .status {
+    font-size: 12px;
+    padding: 6px 14px;
+  }
+
+  .pay-btn,
+  .invoice-btn,
+  .cancel-btn {
+    font-size: 13px;
+    padding: 8px;
+  }
+}

@@ -1,0 +1,286 @@
+<style>
+.testimonials-section {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.testimonials-section.animate {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: all 0.8s ease-in-out;
+}
+
+.testimonials-section.animate.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* Slide Animation */
+.tab-pane {
+    transition: all 0.6s ease-in-out;
+}
+
+.tab-pane.slide-left {
+    animation: slideLeft 0.6s forwards;
+}
+
+@keyframes slideLeft {
+    from {
+        opacity: 0;
+        transform: translateX(60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+/* ============================= */
+/* Mobile Responsive (Max 768px) */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+    .wmtb-section {
+        padding: 50px 20px;
+        background-position: center bottom;
+        background-size: cover;
+        text-align: left;
+    }
+
+    .wmtb-section h2 {
+        font-size: 26px;
+        line-height: 32px;
+        margin-bottom: 20px;
+    }
+
+    .wmtb-section p {
+        font-size: 15px;
+        line-height: 24px;
+    }
+
+    .wmtb-section ul li {
+        font-size: 15px;
+        line-height: 24px;
+        padding-left: 22px;
+        background-position: left 5px;
+    }
+
+}
+.innercontent{background:#fff; width:100%; position:relative;}
+.innerbanner {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+}
+
+.innerbanner .fullimg {
+    width: 100%;
+    height: 520px;
+    object-fit: cover;   /* Makes image fill properly */
+}
+
+.innerbanner-caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-align: center;
+    z-index: 2;
+}
+
+.innerbanner-caption h1 {
+    font-size: 48px;
+    font-weight: 800;
+    text-transform: uppercase;
+
+
+}
+.innercontent1 {   background: #fff;
+    width: 100%;
+    position: relative;
+    margin: 0px auto;
+    padding: 0px 0px;}
+
+.about-section{
+    padding:0px !important;
+    margin-bottom: 28px !important;
+}
+
+@media (max-width: 768px) {
+    .innerbanner,
+    .innerbanner .fullimg {
+        height: 350px;
+    }
+
+    .innerbanner-caption h1 {
+        font-size: 28px;
+    }
+}
+</style>
+<%- include('../partials/header', { title: "About FGarage Service" }) %>
+
+<!-- Banner -->
+<div class="innerbanner">
+    <img src="/images/about-wptb.jpg" class="fullimg">
+    <div class="innerbanner-caption">
+        <h1>About FGarage</h1>
+    </div>
+</div>
+
+<div class="innercontent1">
+<div class="about-section">
+<div class="container">
+<div class="row">
+
+<div class="col-md-6">
+<img src="/images/repairmen-fix-car-together.jpg"  style="height:500px; width:400px;" >
+</div>
+
+<div >
+<h2>Who We Are</h2>
+
+<p>
+FGarage is a trusted car service center in South Florida providing professional car maintenance and repair services.
+</p>
+
+<p>
+We specialize in engine diagnostics, brake repair, AC servicing, wheel alignment, battery replacement and complete car inspection.
+</p>
+
+<p>
+Our mission is to deliver reliable, affordable and fast automotive service with modern tools and certified technicians.
+</p>
+
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+<!-- Why Best Section -->
+<div class="wmtb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-sm-10 col-xs-12 col-md-push-2 col-sm-push-2">
+                <h2>What Makes Us The Best</h2>
+                <p>
+FGarage is committed to delivering top-quality automotive repair and maintenance services in South Florida. We combine advanced diagnostic technology, skilled technicians, and customer-focused service to ensure every vehicle receives the highest standard of care.
+                </p>
+                <ul>
+                    <li>Certified and experienced automotive technicians.</li>
+                    <li>Modern diagnostic tools for accurate and fast problem detection.</li>
+                    <li>Affordable pricing with transparent estimates and no hidden charges.</li>
+                    <li>Complete car services including engine repair, brake service, AC repair, battery replacement, and wheel alignment.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="testimonials-section animate">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <h2>Our Clients</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-sm-10 col-xs-12 col-md-push-1 col-sm-push-1">
+
+                <ul class="nav nav-justified testimonials" id="nav-tabs" role="tablist">
+                    <li role="presentation">
+                        <a href="#dustin" aria-controls="dustin" role="tab" data-toggle="tab">
+                            <div class="profile-picture">
+                                <img src="/images/testi01.png" alt="" />
+                            </div>
+                        </a>
+                    </li>
+                    <li role="presentation" class="active">
+                        <a href="#daksh" aria-controls="daksh" role="tab" data-toggle="tab">
+                            <div class="profile-picture">
+                                <img src="/images/testi02.png" alt="" />
+                            </div>
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#anna" aria-controls="anna" role="tab" data-toggle="tab">
+                            <div class="profile-picture">
+                                <img src="/images/testi03.png" alt="" />
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                
+                <!-- Tab panes -->
+                <div class="tab-content" id="tabs-collapse">
+                    <div role="tabpanel" class="tab-pane fade in active" id="dustin">
+                        <div class="tab-inner">                    
+                            <p>
+FGarage provided outstanding engine diagnostics and fixed my brake issue the same day. Their technicians are professional, honest, and very affordable. Highly recommended for car repair in South Florida!
+</p>
+<h4>Michael Johnson</h4>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="daksh">
+                        <div class="tab-inner">
+                            <p>
+I had AC problems and battery issues. FGarage quickly diagnosed the problem and repaired everything perfectly. The service was fast and the staff was friendly and knowledgeable.
+</p>
+<h4>Sarah Williams</h4>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="anna">
+                        <div class="tab-inner">
+                            <p>
+Best car service center I have visited. They handled my wheel alignment and complete inspection with modern tools. Very reliable and trustworthy automotive service.
+</p>
+<h4>Daniel Martinez</h4>
+                        </div> 
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>
+<script src="/js/scrollReveal.js"></script>
+
+<script>
+window.addEventListener('scroll', function() {
+    var section = document.querySelector('.testimonials-section');
+    if (!section) return;
+
+    var position = section.getBoundingClientRect().top;
+    var screenPosition = window.innerHeight / 1.3;
+
+    if(position < screenPosition) {
+        section.classList.add('show');
+    }
+});
+</script>
+<script>
+$(document).ready(function () {
+
+    var tabs = $('#nav-tabs li');
+    var totalTabs = tabs.length;
+    var index = 0;
+
+    function showNextTab() {
+        index++;
+        if (index >= totalTabs) {
+            index = 0;
+        }
+
+        $('#nav-tabs li:eq(' + index + ') a').tab('show');
+
+        $('.tab-pane').removeClass('slide-left');
+        $('.tab-pane.active').addClass('slide-left');
+    }
+
+    setInterval(showNextTab, 2000);
+
+});
+</script>

@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Vehicle</title>
+  <link rel="stylesheet" href="/css/vehicle.css">
+  <style>
+    body {
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(135deg,#b5dbf5, #fccbea);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+<body>
+
+<div class="form-container">
+  <h2>Add Vehicle</h2>
+  <a href="/vehicles" class="back-btn">← Back to My Vehicles</a>
+
+  <!-- ✅ enctype added -->
+  <form method="POST" action="/vehicles/add" enctype="multipart/form-data" id="vehicleForm">
+
+
+    <input type="text" name="carNumber" placeholder="Car Number" required>
+    <input type="text" name="brand" placeholder="Brand" required>
+    <input type="text" name="model" placeholder="Model" required>
+
+    <select name="fuelType" required>
+      <option value="">Fuel Type</option>
+      <option>Petrol</option>
+      <option>Diesel</option>
+      <option>Electric</option>
+      <option>CNG</option>
+    </select>
+
+    <input type="number" name="year" placeholder="Manufacture Year" required>
+
+    <!-- ✅ NEW PHOTO FIELD -->
+    <input type="file" name="photo" accept="image/*" required>
+
+    <button type="submit">Add Vehicle</button>
+  </form>
+</div>
+<script>
+  const vehicleForm = document.getElementById("vehicleForm");
+
+  vehicleForm.addEventListener("submit", function (e) {
+    e.preventDefault(); // ⛔ stop instant submit
+
+    Swal.fire({
+      icon: "success",
+      title: "Vehicle Added 🚗",
+      text: "Your vehicle has been added successfully!",
+      confirmButtonColor: "#6366f1",
+      timer: 2000,
+      showConfirmButton: false
+    }).then(() => {
+      vehicleForm.submit(); // ✅ submit AFTER alert
+    });
+
+  });
+</script>
+
+
+</body>
+</html>

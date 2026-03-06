@@ -1,0 +1,146 @@
+<style>
+    /* Newsletter Subscribe Button Only */
+
+.fsearch button {
+  padding: 12px 26px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.fsearch button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(255, 65, 108, 0.4);
+}
+
+.fsearch button:active {
+  transform: scale(0.97);
+}
+</style><div class="footer">
+    <div class="container">
+        <div class="row footer-row">
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="footer-contact">
+                    <h2>Contact Us</h2>
+                    <ul>
+                        <li>
+  <i class="fas fa-map-marker-alt"></i>
+  1201 Brickell Ave, Suite 2300, Miami, FL 33131, United States
+</li>
+
+<li>
+  <i class="fas fa-phone-alt"></i>
+  <a href="tel:+13055550123">+1 (305) 555-0123</a>
+</li>
+
+<li>
+  <i class="fas fa-envelope"></i>
+  <a href="mailto:info@yourcompany.com">info@fgarage.com</a>
+</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="footer-useslink">
+                    <h2>Useful Links</h2>
+                    <ul>
+                        <li class="<%= currentRoute === '/' ? 'active' : '' %>">
+        <a href="/">Home</a>
+    </li>
+
+    <li class="<%= currentRoute === '/about' ? 'active' : '' %>">
+        <a href="/about">About Us</a>
+    </li>
+
+    <li class="<%= currentRoute === '/service' ? 'active' : '' %>">
+        <a href="/service">Service</a>
+    </li>
+
+    <li class="<%= currentRoute === '/events-news' ? 'active' : '' %>">
+        <a href="/events-news">Events News</a>
+    </li>
+
+    <li class="<%= currentRoute === '/contact' ? 'active' : '' %>">
+        <a href="/contact">Contact Us</a>
+    </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-5 col-sm-5 col-xs-12">
+                <div class="footer-social">
+                    <h2>Newsletter</h2>
+                    <form action="/subscribe" method="POST" class="fsearch clearfix">
+                        <input type="email" name="email" placeholder="Enter Email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <p>&copy; Copyright 2019. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery-ui.min.js"></script>
+<script src="/js/classie.js"></script>
+<script src="/js/cbpAnimatedHeader.min.js"></script>
+<script src="/js/ddaccordion.js"></script>
+<script src="/js/dddrop.js"></script>
+<script src="/js/menu.js"></script>
+<script src="/js/owl-js.js"></script>
+<script src="/js/awesomefonts.js"></script>
+<script src="/js/scrollReveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const subscribed = params.get("subscribed");
+
+  if (subscribed === "success") {
+    Swal.fire({
+      icon: "success",
+      title: "Subscribed!",
+      text: "You have successfully subscribed to our newsletter."
+    });
+  }
+
+  if (subscribed === "exists") {
+    Swal.fire({
+      icon: "info",
+      title: "Already Subscribed",
+      text: "This email is already registered."
+    });
+  }
+
+  if (subscribed === "error") {
+    Swal.fire({
+      icon: "error",
+      title: "Something went wrong",
+      text: "Please try again later."
+    });
+  }
+</script>
+
+</body>
+</html>

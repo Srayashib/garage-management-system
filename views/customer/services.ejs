@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Available Services</title>
+  <link rel="stylesheet" href="/css/service.css">
+</head>
+<body>
+
+<div class="service-container">
+
+  <h2>🛠 Available Services</h2>
+
+  <!-- Back to Dashboard Link -->
+  <div class="back-wrap">
+  <a href="/dashboard" class="back-btn">← Back to Dashboard</a>
+</div>
+
+
+  <% if (services.length === 0) { %>
+    <p class="no-services">No services available at the moment.</p>
+  <% } %>
+
+  
+
+
+
+
+<div class="services-list ">
+
+  <% services.forEach(service => { %>
+
+    <div class="service-row">
+
+      <!-- IMAGE -->
+      <div class="row-img">
+        <% if (service.image) { %>
+          <img src="/uploads/services/<%= service.image %>" alt="<%= service.name %>">
+        <% } else { %>
+          <img src="/images/no-image.png" alt="No image">
+        <% } %>
+      </div>
+
+      <!-- INFO -->
+      <div class="row-info">
+        <h3><%= service.name %></h3>
+
+        <p class="floor">Professional Service</p>
+
+        <div class="tags">
+          <span class="tag">Fast</span>
+          <span class="tag">Expert</span>
+        </div>
+      </div>
+
+      <!-- PRICE + BUTTON -->
+      <div class="row-action">
+        <div class="price">₹ <%= service.price %></div>
+        <a href="/book/<%= service._id %>" class="book-btn">Book</a>
+      </div>
+
+    </div>
+
+  <% }) %>
+
+</div>
+</div>
+</body>
+</html>

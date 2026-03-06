@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Vehicle</title>
+  <link rel="stylesheet" href="/css/vehicle.css">
+
+  <style>
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: linear-gradient(135deg,#b5dbf5, #fccbea);
+      min-height: 100vh;
+      margin: 0;
+      padding: 40px 15px;
+      color: #2d2d2d;
+    }
+  </style>
+
+  <!-- ✅ SweetAlert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+
+<div class="form-container">
+  <h2>Edit Vehicle</h2>
+  <a href="/vehicles" class="back-btn">← Cancel</a>
+
+  <form 
+    method="POST" 
+    action="/vehicles/edit/<%= vehicle._id %>" 
+    enctype="multipart/form-data"
+    id="editVehicleForm"
+  >
+
+    <input type="text" name="carNumber" value="<%= vehicle.carNumber %>" required>
+    <input type="text" name="brand" value="<%= vehicle.brand %>" required>
+    <input type="text" name="model" value="<%= vehicle.model %>" required>
+
+    <select name="fuelType" required>
+      <option <%= vehicle.fuelType === "Petrol" ? "selected" : "" %>>Petrol</option>
+      <option <%= vehicle.fuelType === "Diesel" ? "selected" : "" %>>Diesel</option>
+      <option <%= vehicle.fuelType === "Electric" ? "selected" : "" %>>Electric</option>
+      <option <%= vehicle.fuelType === "CNG" ? "selected" : "" %>>CNG</option>
+    </select>
+
+    <input type="number" name="year" value="<%= vehicle.year %>" required>
+
+    <input type="file" name="photo">
+
+    <button type="submit">Update Vehicle</button>
+  </form>
+</div>
+
+<script>
+  const editForm = document.getElementById("editVehicleForm");
+
+  editForm.addEventListener("submit", function (e) {
+    e.preventDefault(); // ⛔ stop instant reload
+
+    Swal.fire({
+      icon: "success",
+      title: "Vehicle Updated ✅",
+      text: "Your vehicle details have been updated successfully!",
+      confirmButtonColor: "#6366f1",
+      timer: 2000,
+      showConfirmButton: false
+    }).then(() => {
+      editForm.submit(); // ✅ submit after alert
+    });
+  });
+</script>
+
+</body>
+</html>

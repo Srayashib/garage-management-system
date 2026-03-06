@@ -1,0 +1,546 @@
+/* ================= BASE ================= */
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #eef2ff, #fdf2f8);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* ================= CONTAINER ================= */
+
+.service-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0px 25px 20px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+  animation: fadeIn 0.6s ease;
+  text-align: center;
+}
+
+/* ================= HEADING ================= */
+
+.service-container h2 {
+  margin-top: 5px;
+  font-size: 30px;
+  color: #1d2671;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+/* ================= BACK BUTTON ================= */
+
+.back-wrap{
+  text-align: left;   /* left align */
+  margin-bottom: 20px;
+}
+
+.back-btn{
+  display: inline-block;   /* 👈 not full width */
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(135deg, #1d2671, #c33764);
+  padding: 10px 22px;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+
+.back-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(29, 38, 113, 0.25);
+}
+
+/* ================= EMPTY TEXT ================= */
+
+.no-services {
+  font-size: 16px;
+  color: #888;
+  font-style: italic;
+}
+
+/* ================= GRID ================= */
+/* ================= LIST ================= */
+
+.services-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ================= ROW CARD ================= */
+
+.service-row {
+  background: #ffffff;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  padding: 14px;
+  gap: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  transition: 0.3s ease;
+  border: 1px solid #c33764;
+}
+
+.service-row:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.14);
+}
+
+/* ================= IMAGE ================= */
+
+.row-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 14px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.row-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ================= INFO ================= */
+
+.row-info {
+  flex: 1;
+  text-align: left;;
+}
+
+.row-info h3 {
+  font-size: 17px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 4px;
+  font-family: emoji;
+}
+
+.floor {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0 0 6px;
+  font-style: oblique;
+}
+
+/* ================= TAGS ================= */
+
+.tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background: #eef2ff;
+  color: #4f46e5;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+/* ================= ACTION ================= */
+
+.row-action {
+  text-align: right;
+}
+
+.row-action .price {
+  font-size: 16px;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.row-action .price span {
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.book-btn {
+  display: inline-block;
+    background: linear-gradient(135deg, #6366f1, #c0053c);
+    color: white;
+    padding: 10px 25px;
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.book-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(99,102,241,0.45);
+}
+
+.service-container::before {
+  content: "";
+  position: absolute;
+  left: 30%;
+  width: 40%;
+  height: 4px;
+  background: linear-gradient(90deg, #1d2671, #c33764);
+  border-radius: 0 0 10px 10px;
+}
+/* ================= MOBILE ================= */
+
+@media (max-width: 520px) {
+
+  .service-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .row-img {
+    width: 100%;
+    height: 160px;
+  }
+
+  .row-action {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+
+@media (max-width: 768px) {
+
+  .service-container {
+    margin: 20px 12px;
+    padding: 20px 14px;
+  }
+
+  .service-container h2 {
+    font-size: 24px;
+  }
+
+  .services-grid {
+    gap: 18px;
+  }
+
+  .service-img-box {
+    height: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .back-btn {
+    font-size: 13px;
+    padding: 8px 16px;
+  }
+
+  .service-content h3 {
+    font-size: 16px;
+  }
+
+  .price {
+    font-size: 14px;
+  }
+
+  .book-btn {
+    font-size: 13px;
+    padding: 8px 18px;
+  }
+}
+/* ================= PROFESSIONAL HEADER STYLE ================= */
+
+.service-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.service-container h2 {
+  text-align: center;
+  background: linear-gradient(135deg, #1d2671, #c33764);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 1px;
+}
+
+/* ================= IMPROVED SERVICE ROW ================= */
+
+.service-row {
+  padding: 18px 22px;
+  border: 1px solid rgba(195, 55, 100, 0.3);
+  background: linear-gradient(to right, #ffffff, #fdf2f8);
+}
+
+/* Add subtle left accent bar */
+.service-row::before {
+  content: "";
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(to bottom, #1d2671, #c33764);
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 18px 0 0 18px;
+}
+
+/* Fix position issue */
+.service-row {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ================= IMAGE IMPROVEMENT ================= */
+
+.row-img {
+  width: 110px;
+  height: 110px;
+  border-radius: 16px;
+  border: 3px solid #eef2ff;
+  box-shadow: 0 5px 15px rgba(29,38,113,0.15);
+}
+
+/* ================= INFO SECTION ================= */
+
+.row-info h3 {
+  font-size: 20px;
+  color: #1d2671;
+}
+
+.floor {
+  font-size: 14px;
+  font-style: normal;
+  color: #c33764;
+  font-weight: 500;
+}
+
+/* ================= TAG STYLE PROFESSIONAL ================= */
+
+.tag {
+  background: linear-gradient(135deg, #eef2ff, #fdf2f8);
+  border: 1px solid rgba(29,38,113,0.15);
+  color: #1d2671;
+}
+
+/* ================= ACTION AREA ================= */
+
+.row-action {
+  min-width: 150px;
+}
+
+.row-action .price {
+  font-size: 20px;
+  color: #1d2671;
+}
+
+/* ================= BUTTON PROFESSIONAL ================= */
+
+.book-btn {
+  width: 100%;
+  text-align: center;
+  border-radius: 30px;
+  letter-spacing: 0.5px;
+}
+
+.book-btn:hover {
+  transform: scale(1.05);
+}
+
+/* ================= HOVER EFFECT ================= */
+
+.service-row:hover {
+  transform: translateY(-6px);
+  border-color: #c33764;
+}
+
+/* ================= RESPONSIVE IMPROVEMENT ================= */
+
+@media (max-width: 768px) {
+  .service-row {
+    padding: 15px;
+  }
+
+  .row-img {
+    width: 100%;
+    height: 180px;
+  }
+
+  .row-action {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .book-btn {
+    width: 100%;
+  }
+}
+/* ================= PRICE BOX STYLE ================= */
+
+.row-action .price {
+  background: linear-gradient(135deg, #1d2671, #c33764);
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 25px;
+  font-size: 18px;
+  font-weight: 700;
+  display: inline-block;
+  letter-spacing: 0.5px;
+  box-shadow: 0 6px 15px rgba(29, 38, 113, 0.25);
+  transition: 0.3s ease;
+}
+
+/* Add rupee styling */
+.row-action .price::before {
+  content: "💰 ";
+  font-size: 14px;
+}
+
+/* Hover effect */
+.service-row:hover .price {
+  transform: scale(1.08);
+  box-shadow: 0 10px 25px rgba(195, 55, 100, 0.35);
+}
+
+/* ================= RESPONSIVE MASTER FIX ================= */
+
+/* Large Tablets */
+@media (max-width: 992px) {
+
+  .service-container {
+    margin: 30px 20px;
+    padding: 20px;
+  }
+
+  .service-row {
+    padding: 18px;
+  }
+
+  .row-info h3 {
+    font-size: 18px;
+  }
+
+  .row-action .price {
+    font-size: 18px;
+  }
+}
+
+
+/* Tablets */
+@media (max-width: 768px) {
+
+  .service-container {
+    margin: 20px 15px;
+    padding: 18px;
+  }
+
+  .service-container h2 {
+    font-size: 24px;
+  }
+
+  .service-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .row-img {
+    width: 100%;
+    height: 200px;
+  }
+
+  .row-info {
+    width: 100%;
+  }
+
+  .row-action {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .book-btn {
+    width: auto;
+    padding: 10px 20px;
+  }
+}
+
+
+/* Mobile */
+@media (max-width: 576px) {
+
+  body {
+    padding: 0;
+  }
+
+  .service-container {
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .service-row {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .row-img {
+    height: 180px;
+  }
+
+  .row-action {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .row-action .price {
+    text-align: center;
+   
+  }
+
+  .book-btn {
+    text-align: center;
+  }
+
+  .back-wrap {
+    text-align: center;
+  }
+
+}
+
+
+/* Small Mobile */
+@media (max-width: 400px) {
+
+  .service-container h2 {
+    font-size: 20px;
+  }
+
+  .row-info h3 {
+    font-size: 16px;
+  }
+
+  .floor {
+    font-size: 12px;
+  }
+
+  .tag {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+
+  .row-action .price {
+    font-size: 16px;
+  }
+
+  .book-btn {
+    font-size: 14px;
+    padding: 8px;
+  }
+}

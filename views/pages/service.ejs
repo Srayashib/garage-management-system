@@ -1,0 +1,157 @@
+<style>
+    /* SERVICE CARD DESIGN */
+
+.service-section {
+    padding: 60px 0;
+}
+
+.service-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+    transition: 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.service-img img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+}
+
+.service-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.service-content h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.service-price {
+    color: #49bbf2;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.service-content p {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.service-btn {
+    display: inline-block;
+    padding: 10px 25px;
+    background: #49bbf2;
+    color: #fff;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.service-btn:hover {
+    background: #222;
+    color: #fff;
+}
+/* ===============================
+   IMAGE BLACK TRANSPARENT OVERLAY
+=================================*/
+
+.image-overlay-wrapper {
+    position: relative;
+    width: 100%;
+    height: 550px;
+    overflow: hidden;
+}
+
+.overlay-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.image-dark-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* Black Transparent Background */
+    background: rgba(0, 0, 0, 0.5);
+
+    /* Optional smooth effect */
+    transition: 0.3s ease;
+}
+
+/* Optional hover effect */
+.image-overlay-wrapper:hover .image-dark-overlay {
+    background: rgba(0, 0, 0, 0.6);
+}
+</style>
+<%- include('../partials/header', { title: "Our Services" }) %>
+
+<!-- Banner -->
+<div class="innerbanner">
+    <div class="image-overlay-wrapper">
+    <img src="/images/our-service.jpg" alt="" class="overlay-image">
+    <div class="image-dark-overlay"></div>
+</div>
+    <div class="bgrey-caption"></div>
+    <div class="innerbanner-caption">
+        <h1>Our Services</h1>
+    </div>
+</div>
+
+<div class="innercontent service-section">
+    <div class="container">
+        <div class="row">
+           
+
+            <% services.forEach(service => { %>
+
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="service-card">
+
+                    <div class="service-img">
+                        <img src="/uploads/services/<%= service.image %>" alt="<%= service.name %>">
+                    </div>
+
+                    <div class="service-content">
+                        <h3><%= service.name %></h3>
+
+                        <h4 class="service-price">
+                            ₹ <%= service.price %>
+                        </h4>
+
+                        <p>
+                            Professional and reliable service for your vehicle.
+                            Quality work with expert technicians.
+                        </p>
+
+                        <a href="/book-service/<%= service._id %>" class="service-btn">
+                            Book Now
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+            <% }) %>
+
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>

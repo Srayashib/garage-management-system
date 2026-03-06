@@ -1,0 +1,53 @@
+<div class="subscribers-wrapper">
+  <h2>Newsletter Subscribers</h2>
+
+  <div class="subscribers-table-container">
+<table class="subscribers-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Email</th>
+        <th>Subscribed Date</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <% if (subscribers.length === 0) { %>
+        <tr>
+          <td colspan="4" style="text-align:center;">No Subscribers Found</td>
+        </tr>
+      <% } %>
+
+      <% subscribers.forEach((sub, index) => { %>
+        <tr>
+          <td><%= (currentPage - 1) * 5 + index + 1 %></td>
+          <td><%= sub.email %></td>
+          <td><%= sub.createdAt.toDateString() %></td>
+          <td>
+            <a href="/admin/subscribers/delete/<%= sub._id %>" 
+               class="delete-btn"
+               onclick="return confirm('Are you sure?')">
+              Delete
+            </a>
+          </td>
+        </tr>
+      <% }) %>
+
+    </tbody>
+  </table>
+  
+
+  <!-- Pagination -->
+  <div class="pagination">
+    <% for(let i = 1; i <= totalPages; i++) { %>
+      <a href="/admin/subscribers?page=<%= i %>" 
+         class="<%= currentPage === i ? 'active-page' : '' %>">
+        <%= i %>
+      </a>
+    <% } %>
+  </div>
+  </div>
+  
+
+</div>

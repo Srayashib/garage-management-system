@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/css/admin-dashboard.css">
+  <link rel="stylesheet" href="/css/admin-services.css">
+  <link rel="stylesheet" href="/css/admin-booking.css">
+  <link rel="stylesheet" href="/css/admin-billing.css">
+  <link rel="stylesheet" href="/css/admin-events.css">
+</head>
+<body>
+
+  <div class="admin-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+  <h2 class="logo">Garage Admin</h2>
+
+  <!-- Profile Icon -->
+  <img 
+    src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+    alt="Admin Profile"
+    class="profile-icon"
+  />
+
+  <nav class="menu">
+    <a href="/dashboard" class="<%= page === 'dashboard' ? 'active' : '' %>">📊 Dashboard</a>
+    <a href="/admin/bookings" class="<%= page === 'bookings' ? 'active' : '' %>">📅 Bookings</a>
+    <a href="/admin/services" class="<%= page === 'services' ? 'active' : '' %>">🛠 Services</a>
+    <a href="/admin/technicians" class="<%= page === 'technicians' ? 'active' : '' %>">👨‍🔧 Technicians</a>
+    <a href="/admin/billing"class="<%= page === 'billing' ? 'active' : '' %>">💰 Billing</a>
+    <a href="/admin/events" class="<%= page === 'events' ? 'active' : '' %>">🎉 Events</a>
+    <a href="/admin/contacts" class="<%= page === 'contacts' ? 'active' : '' %>">📩 Contact Messages</a>
+    <a href="/admin/subscribers" class="<%= page === 'subscribers' ? 'active' : '' %>">
+  📧 Subscribers
+</a>
+  </nav>
+
+
+  <a href="/logout" class="logout-link">Logout</a>
+</aside>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+      <% if (page === 'dashboard') { %>
+
+  <header class="top-bar">
+    <h1>Dashboard Overview</h1>
+    <p>System performance summary</p>
+  </header>
+
+  <section class="stats-grid">
+    <div class="stat-card total">
+      <h3>Total Bookings</h3>
+      <span class="stat-number"><%= totalBookings %></span>
+      <p>All service requests</p>
+    </div>
+
+    <div class="stat-card pending">
+      <h3>Pending Services</h3>
+      
+      <span class="stat-number"><%= pendingBookings %></span>
+
+    </div>
+
+    <div class="stat-card completed">
+      <h3>Completed Services</h3>
+      <span class="stat-number"><%= completedBookings %></span>
+
+      <p>Successfully delivered</p>
+    </div>
+  </section>
+  <section class="charts-section">
+
+  <div class="chart-box">
+    <h3>Monthly Bookings</h3>
+    <canvas id="monthlyChart"></canvas>
+  </div>
+
+  <div class="chart-box">
+    <h3>Booking Status</h3>
+    <canvas id="statusChart"></canvas>
+  </div>
+
+</section>
+
+
+<% } %>
+
+      <% if (typeof page !== "undefined" && page === "services") { %>
+
+          <%- include('partials/services') %>
+      <% } %>
+
+      <% if (page === "bookings") { %>
+  <%- include('partials/bookings') %>
+<% } %>
+<% if (page === "technicians") { %>
+  <%- include('partials/technicians') %>
+<% } %>
+
+ <% if (page === "billing") { %>
+  <%- include("partials/billing", {
+        bookings: bookings || [],
+        currentPage: currentPage || 1,
+        totalPages: totalPages || 1
+  }) %>
+<% } %>
+<% if (page === "events") { %>
+  <%- include("partials/events", { events: events || [] }) %>
+<% } %>
+<% if (page === "contacts") { %>
+  <%- include("partials/contacts", { contacts: contacts || [] }) %>
+<% } %>
+<% if (page === "subscribers") { %>
+  <%- include("partials/subscribers", { subscribers: subscribers || [] }) %>
+<% } %>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<% if (page === 'dashboard') { %>
+<div id="dashboard-data"
+     data-monthly='<%= JSON.stringify(monthlyBookings || []) %>'
+     data-completed="<%= completedBookings || 0 %>"
+     data-pending="<%= pendingBookings || 0 %>">
+</div>
+
+<script>
+  const dataElement = document.getElementById("dashboard-data");
+
+  const monthlyData = JSON.parse(dataElement.dataset.monthly);
+  const completed = Number(dataElement.dataset.completed);
+  const pending = Number(dataElement.dataset.pending);
+
+  const ctx1 = document.getElementById("monthlyChart");
+
+  if (ctx1) {
+    new Chart(ctx1, {
+      type: "line",
+      data: {
+        labels: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+        datasets: [{
+          label: "Bookings",
+          data: monthlyData
+        }]
+      }
+    });
+  }
+
+  const ctx2 = document.getElementById("statusChart");
+
+  if (ctx2) {
+    new Chart(ctx2, {
+      type: "pie",
+      data: {
+        labels: ["Completed", "Pending"],
+        datasets: [{
+          data: [completed, pending]
+        }]
+      }
+    });
+  }
+</script>
+
+
+<% } %>
+
+
+    </main>
+
+  </div>
+
+
+
+</body>
+</html>

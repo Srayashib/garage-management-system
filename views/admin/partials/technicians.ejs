@@ -1,0 +1,139 @@
+<div class="technician-wrapper">
+
+  <div class="tech-header">
+    <h2>Technician Management</h2>
+  </div>
+
+  <!-- Add Technician -->
+  <div class="tech-add-box">
+    
+  <form method="POST"
+      action="/admin/technicians/add"
+      enctype="multipart/form-data"
+      class="tech-form">
+
+  <input type="text" name="name" placeholder="Technician Name" required>
+  <input type="text" name="phone" placeholder="Phone Number" required>
+
+  <select name="specialization" required>
+    <option value="">Specialization</option>
+    <option>Engine</option>
+    <option>Electrical</option>
+    <option>AC</option>
+    <option>General</option>
+  </select>
+
+  <input type="number" name="experience" placeholder="Experience (Years)" required>
+
+  <!-- Image Upload -->
+  <input type="file" name="profileImage" accept="image/*">
+
+  <button type="submit" class="btn-primary">
+    Add Technician
+  </button>
+</form>
+  </div>
+
+  <!-- Technician Table -->
+  <div class="tech-table-container">
+    <table class="tech-table">
+      <thead>
+        <tr>
+          <th>Photo</th>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Specialization</th>
+          <th>Experience</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% technicians.forEach(tech => { %>
+          <tr>
+            <td><img src="/uploads/technicians/<%= tech.profileImage %>" alt="Profile" class="tech-avatar"></td>
+            <td><%= tech.name %></td>
+            <td><%= tech.phone %></td>
+            <td><%= tech.specialization %></td>
+            <td><%= tech.experience %> yrs</td>
+
+            <td>
+              <div class="status-inline">
+                <span class="status-dot <%= tech.status.toLowerCase().replace(' ', '-') %>"></span>
+                <span class="status-text"><%= tech.status %></span>
+
+                <form method="POST"
+                      action="/admin/technicians/status/<%= tech._id %>">
+                  <select name="status"
+                          onchange="confirmStatusChange(this)"
+                          class="status-select">
+                    <option value="Available" <%= tech.status === "Available" ? "selected" : "" %>>Available</option>
+                    <option value="Busy" <%= tech.status === "Busy" ? "selected" : "" %>>Busy</option>
+                    <option value="On Leave" <%= tech.status === "On Leave" ? "selected" : "" %>>On Leave</option>
+                  </select>
+                </form>
+              </div>
+            </td>
+
+            <td>
+              <form method="POST"
+                    action="/admin/technicians/delete/<%= tech._id %>">
+                <button type="button"
+                        class="btn-danger"
+                        onclick="confirmDelete(this)">
+                  Delete
+                </button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  function confirmDelete(button) {
+    const form = button.closest("form");
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "This technician will be permanently deleted!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#dc2626",
+      cancelButtonColor: "#6b7280",
+      confirmButtonText: "Yes, delete it",
+      cancelButtonText: "Cancel",
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        form.submit();
+      }
+    });
+  }
+</script>
+
+<script>
+function confirmStatusChange(selectElement) {
+  const form = selectElement.closest("form");
+  const selectedValue = selectElement.value;
+
+  Swal.fire({
+    title: "Change Status?",
+    text: "Technician will be marked as " + selectedValue,
+    icon: "question",
+    showCancelButton: true,
+    confirmButtonColor: "#111827",
+    cancelButtonColor: "#6b7280",
+    confirmButtonText: "Yes, update",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      form.submit();
+    } else {
+      window.location.reload(); // revert selection
+    }
+  });
+}
+</script>

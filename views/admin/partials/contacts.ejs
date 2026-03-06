@@ -1,0 +1,49 @@
+<div class="contacts-wrapper">
+
+  <div class="contacts-header">
+    <h2>Contact Messages</h2>
+  </div>
+
+  <div class="contacts-table-container">
+    <table class="contacts-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Message</th>
+          <th>Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% if (contacts.length === 0) { %>
+          <tr>
+            <td colspan="5">No contact messages yet.</td>
+          </tr>
+        <% } %>
+
+        <% contacts.forEach(contact => { %>
+          <tr>
+            <td data-label="Name"><%= contact.name %></td>
+            <td data-label="Email"><%= contact.email %></td>
+            <td data-label="Message">
+              <%= contact.message.length > 50 
+                    ? contact.message.substring(0, 50) + "..." 
+                    : contact.message %>
+            </td>
+            <td data-label="Date">
+              <%= contact.createdAt.toDateString() %>
+            </td>
+            <td data-label="Action">
+              <a href="/admin/contacts/delete/<%= contact._id %>" class="btn-danger">
+                Delete
+              </a>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+</div>

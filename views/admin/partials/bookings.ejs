@@ -1,0 +1,214 @@
+<style>
+/* ===== Billing Form ===== */
+.bill-form {
+  margin-top: 16px;
+  padding: 16px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+.bill-form label {
+  display: block;
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.bill-form input {
+  width: 100%;
+  margin-top: 4px;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.bill-form input:focus {
+  outline: none;
+  border-color: #111827;
+}
+
+/* ===== Generate Bill Button ===== */
+.bill-form button {
+  margin-top: 14px;
+  width: 100%;
+  padding: 10px;
+  background: #111827;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.bill-form button:hover {
+  background: #000;
+}
+</style>
+
+<div class="booking-container">
+  <h2>📅 Service Bookings</h2>
+
+  <% if (bookings.length === 0) { %>
+    <p>No bookings found.</p>
+  <% } %>
+
+  <div class="booking-scroll">
+
+  <% bookings.forEach(booking => { %>
+    <div class="booking-card">
+
+      <div class="booking-info">
+        <p><strong>Customer:</strong>
+          <%= booking.customer ? booking.customer.name : "Deleted User" %>
+        </p>
+
+        <p><strong>Service:</strong>
+          <%= booking.service ? booking.service.name : "Service Removed" %>
+        </p>
+
+        <p><strong>Vehicle:</strong>
+          <% if (booking.vehicle) { %>
+            <%= booking.vehicle.brand %> - <%= booking.vehicle.carNumber %>
+          <% } else { %>
+            Vehicle Removed
+          <% } %>
+        </p>
+
+        <p><strong>Date:</strong> <%= booking.bookingDate.toDateString() %></p>
+        <p><strong>Time:</strong> <%= booking.bookingTime %></p>
+
+        <p><strong>Status:</strong>
+          <span class="status <%= booking.status.toLowerCase().replace(' ', '-') %>">
+            <%= booking.status %>
+          </span>
+        </p>
+      </div>
+
+      
+ <% if (booking.status === "Delivered") { %>
+
+  <!-- DELETE ONLY (Delivered) -->
+  <form method="POST"
+        action="/admin/bookings/delete/<%= booking._id %>"
+        onsubmit="return confirmDelete(this)"
+        style="margin-top:10px;">
+
+    <button type="submit"
+      style="background:#dc2626;color:#fff;padding:8px 14px;border:none;border-radius:6px;cursor:pointer;font-size:13px;">
+      🗑 Delete Booking
+    </button>
+  </form>
+
+<% } else if (booking.status !== "Cancelled") { %>
+
+  <!-- STATUS UPDATE FORM -->
+  <form method="POST"
+        action="/admin/bookings/update"
+        class="status-form"
+        onsubmit="return confirmUpdate(this)">
+
+    <input type="hidden" name="bookingId" value="<%= booking._id %>">
+
+    <select name="status">
+      <option <%= booking.status === "Pending" ? "selected" : "" %>>Pending</option>
+      <option <%= booking.status === "Approved" ? "selected" : "" %>>Approved</option>
+      <option <%= booking.status === "In Service" ? "selected" : "" %>>In Service</option>
+      <option <%= booking.status === "Ready" ? "selected" : "" %>>Ready</option>
+      <option <%= booking.status === "Delivered" ? "selected" : "" %>>Delivered</option>
+      <option <%= booking.status === "Cancelled" ? "selected" : "" %>>Cancelled</option>
+    </select>
+
+    <button type="submit">Update</button>
+  </form>
+
+  <!-- DELETE BUTTON ALSO -->
+  <form method="POST"
+        action="/admin/bookings/delete/<%= booking._id %>"
+        onsubmit="return confirmDelete(this)"
+        style="margin-top:10px;">
+
+    <button type="submit"
+      style="background:#dc2626;color:#fff;padding:8px 14px;border:none;border-radius:6px;cursor:pointer;font-size:13px;">
+      🗑 Delete Booking
+    </button>
+  </form>
+
+<% } else { %>
+
+  <!-- CANCELLED MESSAGE -->
+  <p style="color:#f94206; font-weight:600; margin-top:10px;">
+    ❌ Booking Cancelled by Customer
+  </p>
+
+  <!-- DELETE BUTTON FOR CANCELLED -->
+  <form method="POST"
+        action="/admin/bookings/delete/<%= booking._id %>"
+        onsubmit="return confirmDelete(this)"
+        style="margin-top:10px;">
+
+    <button type="submit"
+      style="background:#dc2626;color:#fff;padding:8px 14px;border:none;border-radius:6px;cursor:pointer;font-size:13px;">
+      🗑 Delete Booking
+    </button>
+  </form>
+
+<% } %>
+
+
+      <!-- 💰 BILLING FORM (ONLY WHEN READY, UNPAID & BILL NOT GENERATED) -->
+    
+
+    
+
+    </div>
+  <% }) %>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+function confirmUpdate(form) {
+  Swal.fire({
+    title: "Update Booking Status?",
+    text: "Are you sure you want to change this booking status?",
+    icon: "question",
+    showCancelButton: true,
+    confirmButtonColor: "#4f46e5",
+    cancelButtonColor: "#6b7280",
+    confirmButtonText: "Yes, Update",
+    cancelButtonText: "Cancel"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      form.submit();
+    }
+  });
+
+  return false;
+}
+</script>
+<script>
+  function confirmDelete(form){
+   Swal.fire({
+    title: "Delete Booking?",
+    text: "This action cannot be undone!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#dc2626",
+    cancelButtonColor: "#6b7280",
+    confirmButtonText: "Yes, Delete",
+    cancelButtonText: "Cancel"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      form.submit();
+    }
+  });
+
+  return false;
+}
+</script>

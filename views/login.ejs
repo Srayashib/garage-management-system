@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | Garage Service</title>
+  <link rel="stylesheet" href="/css/auth.css">
+
+</head>
+<body>
+
+  <div class="auth-container">
+    <div class="auth-card">
+      <h2>Welcome Back</h2>
+      <p class="subtitle">Login to your account</p>
+
+      <form method="POST" action="/login">
+        <div class="form-group">
+          <input type="email" name="email" placeholder="Email address" required />
+        </div>
+
+        <div class="form-group">
+          <input type="password" name="password" placeholder="Password" required />
+        </div>
+
+        <button type="submit" class="btn-primary">Login</button>
+      </form>
+
+      <p class="switch-text">
+        Don’t have an account?
+        <a href="/register">Register here</a>
+      </p>
+    </div>
+  </div>
+
+</body>
+</html>

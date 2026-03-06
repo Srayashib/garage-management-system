@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Manage Services</title>
+  <link rel="stylesheet" href="/css/service.css">
+</head>
+<body>
+
+<div class="service-container">
+  <h2>Service Catalog</h2>
+
+  <form method="POST" action="/admin/services/add" class="service-form">
+    <input type="text" name="name" placeholder="Service Name" required>
+    <input type="number" name="price" placeholder="Price ₹" required>
+    <button>Add Service</button>
+  </form>
+
+  <% services.forEach(service => { %>
+    <div class="service-card">
+      <div>
+        <h3><%= service.name %></h3>
+        <p>₹ <%= service.price %></p>
+        <span class="<%= service.isActive ? 'active' : 'inactive' %>">
+          <%= service.isActive ? 'Enabled' : 'Disabled' %>
+        </span>
+      </div>
+
+      <a href="/admin/services/toggle/<%= service._id %>" class="toggle-btn">
+        Toggle
+      </a>
+    </div>
+  <% }) %>
+
+</div>
+
+</body>
+</html>

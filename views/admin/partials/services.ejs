@@ -1,0 +1,174 @@
+<div class="service-container">
+  <h2>Service Catalog</h2>
+
+ 
+
+  <% if (typeof editService !== "undefined") { %>
+
+  <!-- ✅ UPDATE SERVICE FORM -->
+  <form method="POST"
+        action="/admin/services/update/<%= editService._id %>"
+        class="service-form"
+        enctype="multipart/form-data"
+        onsubmit="return confirmUpdate()">
+
+    <input type="text" name="name" value="<%= editService.name %>" required>
+    <input type="number" name="price" value="<%= editService.price %>" required>
+    <input type="file" name="image">
+
+    <button>Update Service</button>
+  </form>
+
+<% } else { %>
+
+  <!-- ✅ ADD SERVICE FORM -->
+  <form method="POST"
+        action="/admin/services/add"
+        class="service-form"
+        enctype="multipart/form-data">
+
+    <input type="text" name="name" placeholder="Service Name" required>
+    <input type="number" name="price" placeholder="Price ₹" required>
+    <input type="file" name="image" accept="image/*">
+
+    <button>Add Service</button>
+  </form>
+
+<% } %>
+
+
+
+  <div class="services-grid-scroll">
+    <!-- ✅ GRID -->
+    <div class="services-grid">
+
+      <% services.forEach(service => { %>
+        <div class="service-card">
+          <div>
+            <% if (service.image) { %>
+              <img src="/uploads/services/<%= service.image %>" class="service-img">
+            <% } %>
+
+            <h3><%= service.name %></h3>
+            <p>₹ <%= service.price %></p>
+            <span class="<%= service.isActive ? 'active' : 'inactive' %>">
+              <%= service.isActive ? 'Enabled' : 'Disabled' %>
+            </span>
+          </div>
+
+          <!-- ✅ TOGGLE WITH ALERT -->
+          <a href="/admin/services/toggle/<%= service._id %>"
+             class="toggle-btn"
+             onclick="return confirmToggle(event, this)">
+            Toggle
+          </a>
+
+          <div class="service-actions">
+
+            <!-- ✅ EDIT INFO ALERT -->
+            <a href="/admin/services/edit/<%= service._id %>"
+               class="edit-btn"
+               onclick="return confirmEdit(event, this)">
+              Edit
+            </a>
+
+            <form action="/admin/services/delete/<%= service._id %>"
+                  method="POST"
+                  class="delete-form">
+
+              <button type="button"
+                      class="delete-btn"
+                      onclick="confirmDelete(this)">
+                Delete
+              </button>
+
+            </form>
+
+          </div>
+
+        </div>
+      <% }) %>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ✅ SWEETALERT2 CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  // ✅ DELETE CONFIRM
+  function confirmDelete(btn) {
+    const form = btn.closest("form");
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "This service will be permanently deleted!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "Cancel"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        form.submit();
+      }
+    });
+  }
+
+  // ✅ UPDATE CONFIRM
+  function confirmUpdate() {
+    Swal.fire({
+      title: "Update Service?",
+      text: "Do you want to save these changes?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Yes, update",
+      cancelButtonText: "Cancel"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        document.querySelector(".service-form").submit();
+      }
+    });
+
+    return false; // stop normal submit
+  }
+
+  // ✅ TOGGLE CONFIRM
+  function confirmToggle(event, link) {
+    event.preventDefault();
+
+    Swal.fire({
+      title: "Change Service Status?",
+      text: "This will enable or disable the service.",
+      icon: "info",
+      showCancelButton: true,
+      confirmButtonText: "Yes, change it",
+      cancelButtonText: "Cancel"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = link.href;
+      }
+    });
+
+    return false;
+  }
+
+  // ✅ EDIT INFO
+  function confirmEdit(event, link) {
+    event.preventDefault();
+
+    Swal.fire({
+      title: "Edit Service",
+      text: "You are going to edit this service.",
+      icon: "info",
+      confirmButtonText: "Continue"
+    }).then(() => {
+      window.location.href = link.href;
+    });
+
+    return false;
+  }
+</script>

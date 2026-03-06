@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Customer Dashboard</title>
+  <link rel="stylesheet" href="/css/cus_dashboard.css">
+</head>
+<body>
+
+  <div class="dashboard-container">
+
+    <header class="dashboard-header">
+      <h2>👋 Welcome to Your Dashboard</h2>
+      <a href="/logout" class="logout-btn">Logout</a>
+    </header>
+
+    <section class="dashboard-cards">
+
+      <div class="card">
+        <h3>🚗 My Vehicles</h3>
+        <p>Manage and view all your registered vehicles</p>
+
+        <a href="/vehicles" class="card-link">
+          View My Vehicles →
+        </a>
+      </div>
+
+
+      <div class="card">
+        <h3>🛠 Available Services</h3>
+        <p>Browse services offered by the garage</p>
+
+        <a href="/services" class="card-link">View Services →</a>
+      </div>
+
+
+      <div class="card">
+        <h3>📜 Service History</h3>
+        <p>Review your completed service records</p>
+        <a href="/my-bookings" class="card-link">View Service History →</a>
+
+      </div>
+
+      
+
+    </section>
+    <section class="dashboard-row">
+
+  <!-- 70% Graph -->
+  <div class="graph-box">
+    <h3>📈 Monthly Service Activity</h3>
+    <canvas id="bookingChart"></canvas>
+  </div>
+
+  <!-- 30% Summary -->
+  <div class="summary-box">
+    <h3>📊 Booking Summary</h3>
+
+    <div class="summary-item">
+      <span>Total Bookings</span>
+      <strong><%= totalBookings %></strong>
+    </div>
+
+    <div class="summary-item">
+      <span>Completed</span>
+      <strong><%= completed %></strong>
+    </div>
+
+    <div class="summary-item">
+      <span>Pending</span>
+      <strong><%= pending %></strong>
+    </div>
+
+    <div class="summary-item">
+      <span>Total Spent</span>
+      <strong>₹ <%= totalSpent %></strong>
+    </div>
+
+  </div>
+
+</section>
+
+  </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const monthlyData = JSON.parse('<%- JSON.stringify(monthlyData || []) %>');
+
+  const ctx = document.getElementById("bookingChart");
+
+  if (ctx) {
+    new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+        datasets: [{
+          label: "Bookings",
+          data: monthlyData,
+          borderColor: "#4f46e5",
+          backgroundColor: "rgba(79,70,229,0.1)",
+          fill: true,
+          tension: 0.4
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false }
+        }
+      }
+    });
+  }
+</script>
+</body>
+</html>

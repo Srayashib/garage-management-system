@@ -1,0 +1,12 @@
+<h2>Edit Service</h2>
+
+<form method="POST" action="/admin/services/edit/<%= service._id %>" 
+      class="service-form" enctype="multipart/form-data">
+
+  <input type="text" name="name" value="<%= service.name %>" required>
+  <input type="number" name="price" value="<%= service.price %>" required>
+
+  <input type="file" name="image">
+
+  <button>Update Service</button>
+</form>

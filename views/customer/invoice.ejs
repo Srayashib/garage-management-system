@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Invoice</title>
+
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f3f4f6;
+      padding: 40px;
+    }
+
+    .invoice-container {
+      max-width: 800px;
+      margin: auto;
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    }
+
+    .invoice-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .invoice-header h1 {
+      font-size: 28px;
+      margin: 0;
+      color: #111827;
+    }
+
+    .company-info {
+      text-align: right;
+      font-size: 14px;
+      color: #6b7280;
+    }
+
+    .section {
+      margin-bottom: 25px;
+    }
+
+    .section h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #111827;
+    }
+
+    .details p {
+      margin: 4px 0;
+      font-size: 14px;
+      color: #374151;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    table th {
+      background: #111827;
+      color: #fff;
+      padding: 12px;
+      text-align: left;
+      font-size: 13px;
+    }
+
+    table td {
+      padding: 12px;
+      border-bottom: 1px solid #e5e7eb;
+      font-size: 13px;
+    }
+
+    .total-row td {
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .grand-total {
+      text-align: right;
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .paid-box {
+      margin-top: 20px;
+      padding: 14px;
+      border: 2px solid #16a34a;
+      background: #f0fdf4;
+      border-radius: 8px;
+      color: #166534;
+      font-size: 14px;
+    }
+
+    .buttons {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      margin: 0 8px;
+    }
+
+    .print-btn {
+      background: #2563eb;
+      color: #fff;
+    }
+
+    .print-btn:hover {
+      background: #1d4ed8;
+    }
+
+    .back-btn {
+      background: #6b7280;
+      color: #fff;
+    }
+
+    .back-btn:hover {
+      background: #4b5563;
+    }
+
+    /* Hide buttons when printing */
+    @media print {
+      body {
+        background: #fff;
+        padding: 0;
+      }
+
+      .invoice-container {
+        box-shadow: none;
+        border-radius: 0;
+      }
+
+      .buttons {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="invoice-container">
+
+  <!-- HEADER -->
+  <div class="invoice-header">
+    <h1>INVOICE</h1>
+    <div class="company-info">
+      <strong>Garage Service Center</strong><br>
+      Service & Repair Experts<br>
+      India<br>
+      support@garage.com
+    </div>
+  </div>
+
+  <!-- CUSTOMER / BOOKING DETAILS -->
+  <div class="section details">
+    <h3>Booking Details</h3>
+    <p><strong>Service:</strong> <%= booking.service.name %></p>
+    <p><strong>Vehicle:</strong> <%= booking.vehicle.brand %> - <%= booking.vehicle.carNumber %></p>
+    <p><strong>Date:</strong> <%= booking.bookingDate.toDateString() %></p>
+  </div>
+
+  <!-- BILL TABLE -->
+  <div class="section">
+    <h3>Payment Summary</h3>
+
+    <table>
+      <tr>
+        <th>Description</th>
+        <th>Amount (₹)</th>
+      </tr>
+
+      <tr>
+        <td>Base Service Charge</td>
+        <td>₹<%= booking.baseAmount %></td>
+      </tr>
+
+      <tr>
+        <td>Extra Charges</td>
+        <td>₹<%= booking.extraCharges %></td>
+      </tr>
+
+      <tr>
+        <td>Tax (<%= booking.tax %>%)</td>
+        <td>
+          ₹<%= ((booking.baseAmount + booking.extraCharges) * booking.tax / 100).toFixed(2) %>
+        </td>
+      </tr>
+
+      <tr class="total-row">
+        <td>Total Amount</td>
+        <td>₹<%= booking.totalAmount %></td>
+      </tr>
+    </table>
+
+    <div class="grand-total">
+      Grand Total: ₹<%= booking.totalAmount %>
+    </div>
+  </div>
+
+  <!-- PAYMENT STATUS -->
+  <% if (booking.paymentStatus === "Paid") { %>
+    <div class="paid-box">
+      <strong>Payment Status:</strong> Paid <br>
+      <strong>Payment ID:</strong> <%= booking.razorpayPaymentId %>
+    </div>
+  <% } %>
+
+  <!-- BUTTONS -->
+  <div class="buttons">
+    <button class="btn print-btn" onclick="window.print()">🖨 Download / Print PDF</button>
+    <button class="btn back-btn" onclick="window.location.href='/my-bookings'">← Back</button>
+  </div>
+
+</div>
+
+</body>
+</html>

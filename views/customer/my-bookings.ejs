@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Service History</title>
+  <link rel="stylesheet" href="/css/service-history.css">
+</head>
+<body>
+
+<div class="history-container">
+  <h2>📜 My Service History</h2>
+  <a href="/dashboard" class="back-link">← Back to Dashboard</a>
+
+  <% if (bookings.length === 0) { %>
+    <p class="empty">No services booked yet.</p>
+  <% } %>
+
+  <% bookings.forEach(b => { %>
+    <div class="history-card">
+
+      <div class="left">
+        <h3>
+  <%= b.service ? b.service.name : "Service Removed" %>
+</h3>
+
+        <p>
+  🚗 
+  <%= b.vehicle ? b.vehicle.brand + " - " + b.vehicle.carNumber : "Vehicle Removed" %>
+</p>
+
+        <p>📅 <%= b.bookingDate.toDateString() %> | ⏰ <%= b.bookingTime %></p>
+      </div>
+
+      <div class="right">
+        <span class="status <%= b.status.toLowerCase().replace(" ", "-") %>">
+          <%= b.status %>
+        </span>
+        <% if (b.status === "Pending" || b.status === "Approved") { %>
+  <form action="/cancel-booking" method="POST" class="cancel-form">
+    <input type="hidden" name="bookingId" value="<%= b._id %>">
+    <button type="button" class="cancel-btn" onclick="confirmCancel(this.form)">
+      ❌ Cancel Booking
+    </button>
+  </form>
+<% } %>
+
+      </div>
+
+
+      <% if (b.status === "Ready" && b.paymentStatus === "Unpaid") { %>
+  <a href="/pay/<%= b._id %>" class="pay-btn">
+  💳 Pay ₹<%= b.totalAmount %>
+</a>
+
+<% } %>
+
+      <% if (b.paymentStatus === "Paid") { %>
+  <a href="/invoice/<%= b._id %>" class="invoice-btn">⬇ Download Invoice</a>
+<% } %>
+
+    </div>
+
+  <% }) %>
+
+  
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+window.confirmCancel = function(form) {
+  Swal.fire({
+    title: "Cancel this booking?",
+    text: "This action cannot be undone.",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#d33",
+    cancelButtonColor: "#6b7280",
+    confirmButtonText: "Yes, Cancel"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      form.submit();
+    }
+  });
+};
+</script>
+
+
+</body>
+</html>

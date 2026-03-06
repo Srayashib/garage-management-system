@@ -1,0 +1,33 @@
+garage-service-app/
+│
+├── config/
+│   └── db.js
+│
+├── controllers/
+│   └── authController.js
+│   └── vehicleController.js
+├── middleware/
+│   └── authMiddleware.js
+│
+├── models/
+│   └── User.js
+│   └── Vehicle.js
+├── routes/
+│   └── authRoutes.js
+│   └── VehicleRoutes.js
+├── views/
+│   ├── login.ejs
+│   ├── register.ejs
+├   |── customer/
+|        |── dashboard.ejs
+│   |── admin/
+│   └    |── dashboard.ejs 
+│   |── vehicles/
+│   └    |── add-vehicle.ejs 
+│        |── vehicle-list.ejs 
+├── public/
+│   └── css/all css file
+│
+├── .env
+├── app.js
+└── package.json

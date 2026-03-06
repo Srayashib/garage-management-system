@@ -1,0 +1,117 @@
+<%- include('../partials/header', { title: "Events News" }) %>
+
+<style>
+/* MAIN BLOG IMAGE STYLE */
+.blogpic img {
+    width: 300px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* BLOG BLOCK SPACING */
+.blog-block {
+    margin-bottom: 40px;
+}
+
+/* SIDEBAR IMAGE STYLE */
+.related-block-img img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .blogpic img {
+        height: 220px;
+    }
+
+    .related-block-img img {
+        height: 100px;
+    }
+}
+</style>
+<div class="innerbanner">
+    <img src="/images/event.jpg" alt="" class="fullimg"  style="    width: 100%;
+    height: 600px;
+    object-fit: cover;"   >
+    <div class="bgrey-caption"></div>
+    <div class="innerbanner-caption">
+        <h1>Events</h1>
+    </div>
+</div>
+
+<div class="innercontent">
+    <div class="container">
+        <div class="row">
+            
+            <!-- MAIN BLOGS (3) -->
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <div class="blog-left">
+
+                    <% mainBlogs.forEach(event => { %>
+                    <div class="blog-block">
+                        <div class="blogpic">
+                            <a href="/events-details/<%= event._id %>">
+                                <img src="<%= event.image %>" alt="">
+                            </a>
+                        </div>
+
+                        <h3>
+                            <a href="/events-details/<%= event._id %>">
+                                <%= event.title %>
+                            </a>
+                        </h3>
+
+                        <h4 class="dateyear"><%= event.date %></h4>
+
+                        <p><%= event.shortDescription %></p>
+
+                        <a href="/events-details/<%= event._id %>" class="readmore-btn">
+                            Read More
+                        </a>
+                    </div>
+                    <% }) %>
+
+                </div>
+            </div>
+
+            <!-- SIDEBAR BLOGS (2) -->
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="blog-right">
+
+                    <% sidebarBlogs.forEach(event => { %>
+                    <div class="related-block">
+
+                        <h3>
+                            <a href="/events-details/<%= event._id %>">
+                                <%= event.title %>
+                            </a>
+                        </h3>
+
+                        <h6><%= event.date %></h6>
+
+                        <div class="related-block-img">
+                            <a href="/events-details/<%= event._id %>">
+                                <img src="<%= event.image %>" alt="">
+                            </a>
+                        </div>
+
+                        <p><%= event.shortDescription.substring(0,100) %>...</p>
+
+                        <a href="/events-details/<%= event._id %>" class="readmore-btn">
+                            Read More
+                        </a>
+                    </div>
+                    <% }) %>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>

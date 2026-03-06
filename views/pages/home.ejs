@@ -1,0 +1,735 @@
+<style>
+    /* ===============================
+   HERO SECTION
+=================================*/
+
+.herobanner {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+}
+
+.herobanner img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+}
+
+.banner-bgcaption {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 600px;
+    background: rgba(0,0,0,0.6);
+}
+
+.banner-caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.banner-caption h2 {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.banner-caption p {
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+.banner-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #49bbf2;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.banner-btn:hover {
+    background: #fff;
+    color: #49bbf2;
+}
+
+
+/* ===============================
+   ABOUT SECTION
+=================================*/
+
+.about-section {
+    padding: 80px 0;
+}
+
+.about-section h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.about-section p {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.readmore-btn {
+    display: inline-block;
+    padding: 10px 25px;
+    background: #49bbf2;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.readmore-btn:hover {
+    background: #000;
+    color: #fff;
+}
+
+
+/* ===============================
+   SERVICES SECTION
+=================================*/
+
+.newproduct-wrapper {
+    padding: 80px 0;
+    background: #f8f9fa;
+}
+
+.newproduct-wrapper h2 {
+        font-size: 40px;
+    line-height: 44px;
+    color: #494949;
+    font-weight: 900;
+    margin-bottom: 40px;
+    position: relative;
+    margin-top: 0px;
+    text-transform: uppercase;
+}
+
+.newproduct-box {
+    background: #fff;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: 0.3s;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.newproduct-box:hover {
+    transform: translateY(-10px);
+}
+
+.newproduct-box-pic img {
+    height: 250px;
+    object-fit: cover;
+}
+
+.newproduct-box-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.newproduct-box-content h4 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.newproduct-box-content h6 {
+    font-size: 18px;
+    color: #49bbf2;
+    margin-bottom: 15px;
+}
+
+
+/* ===============================
+   WHY CHOOSE US - 2 COLUMN GRID
+   THEME: ORANGE + WHITE + SKY
+=================================*/
+
+.whyus-section {
+    padding: 70px 0;
+    background: #f4fbff; /* light sky background */
+}
+
+.whyus-title {
+    font-size: 40px;
+    line-height: 44px;
+    color: #494949;
+    font-weight: 900;
+    margin-bottom: 40px;
+    position: relative;
+    margin-top: 0px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.whyus-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px 50px;
+}
+
+.whyus-box {
+    display: flex;
+    align-items: flex-start;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    transition: 0.3s ease;
+    border-left: 5px solid #49bbf2; /* sky */
+}
+
+.whyus-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    border-left: 5px solid #ff6a00; /* orange hover */
+}
+
+.whyus-icon {
+    min-width: 55px;
+    height: 55px;
+    background: #49bbf2; /* sky */
+    color: #fff;
+    font-weight: 700;
+    font-size: 18px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 55px;
+    margin-right: 20px;
+    transition: 0.3s ease;
+}
+
+.whyus-box:hover .whyus-icon {
+    background: #ff6a00; /* orange on hover */
+}
+
+.whyus-box h4 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.whyus-box p {
+    color: #666;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .whyus-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===============================
+   TECHNICIANS SECTION
+=================================*/
+
+.hblogpost-section {
+    padding: 80px 0;
+}
+
+.hblogpost-section h2 {
+    margin-bottom: 50px;
+    font-weight: 700;
+}
+
+.hblogpost-box {
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    border-radius: 8px;
+    margin-bottom: 30px;
+    transition: 0.3s;
+}
+
+.hblogpost-box:hover {
+    transform: translateY(-8px);
+}
+
+.hblogpost-box img {
+    height: 220px;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border-radius: 6px;
+}
+
+.hblogpost-box h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.hblogpost-box h6 {
+    font-size: 14px;
+    color: #49bbf2;
+    margin-bottom: 10px;
+}
+
+.hblogpost-box p {
+    font-size: 14px;
+    color: #666;
+}
+/* ===============================
+   TECHNICIAN AUTO SLIDER
+=================================*/
+
+.technician-slider {
+    overflow: hidden;
+    position: relative;
+}
+
+/* FORCE technician card to always be 25% */
+
+.technician-track {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+}
+
+.technician-item {
+    flex: 0 0 25% !important;
+    max-width: 25% !important;
+}
+
+@keyframes scrollTech {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Pause on hover */
+.technician-slider:hover .technician-track {
+    animation-play-state: paused;
+}
+
+/* Responsive */
+
+@media (max-width: 992px) {
+    .technician-item {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 576px) {
+    .technician-item {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+/* ===============================
+   CTA SECTION
+=================================*/
+
+/* ===============================
+   PREMIUM COLORFUL CTA SECTION
+=================================*/
+
+.cta-section {
+    padding: 90px 0;
+    background: linear-gradient(135deg, #ff6a00, #49bbf2);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative circles */
+.cta-section::before {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    top: -100px;
+    left: -100px;
+}
+
+.cta-section::after {
+    content: "";
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    bottom: -100px;
+    right: -100px;
+}
+
+.cta-box {
+    background: rgba(255,255,255,0.15);
+    padding: 60px 40px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    color: #fff;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.cta-box h2 {
+    font-size: 40px;
+    font-weight: 900;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.cta-box p {
+    font-size: 18px;
+    margin-bottom: 35px;
+    line-height: 1.7;
+}
+
+.cta-btn {
+    display: inline-block;
+    padding: 14px 40px;
+    background: #fff;
+    color: #ff6a00;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: 0.3s ease;
+    font-size: 16px;
+}
+
+.cta-btn:hover {
+    background: #000;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* ===============================
+   RESPONSIVE
+=================================*/
+
+@media (max-width: 768px) {
+
+    .herobanner,
+    .herobanner img,
+    .banner-bgcaption {
+        height: 400px;
+    }
+
+    .banner-caption h2 {
+        font-size: 28px;
+    }
+
+    .newproduct-box-pic img {
+        height: 200px;
+    }
+
+    .hblogpost-box img {
+        height: 180px;
+    }
+}
+
+
+/* ===============================
+   SERVICES HORIZONTAL SCROLL
+=================================*/
+
+.services-scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 10px;
+}
+
+.services-track {
+    display: flex;
+    flex-wrap: nowrap !important;
+}
+
+.service-item {
+    flex: 0 0 33.33%; /* 3 cards visible */
+    max-width: 33.33%;
+    padding: 15px;
+}
+
+/* Custom Scrollbar */
+.services-scroll::-webkit-scrollbar {
+    height: 8px;
+}
+
+.services-scroll::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.services-scroll::-webkit-scrollbar-thumb {
+    background: #49bbf2;
+    border-radius: 10px;
+}
+
+.services-scroll::-webkit-scrollbar-thumb:hover {
+    background: #000;
+}
+
+/* Responsive */
+
+@media (max-width: 992px) {
+    .service-item {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 576px) {
+    .service-item {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+</style>
+<%- include('../partials/header', { title: "Garage Service Home" }) %>
+
+<!-- HERO SECTION -->
+<div class="herobanner">
+    <img src="/images/home.jpeg" width="100%">
+    <div class="banner-bgcaption"></div>
+    <div class="banner-caption text-center">
+        <h1 style="font-size: 70px;
+    line-height: 70px;
+    color: #fff;
+    font-weight: 900;
+    margin: 0px;">Professional Garage Services</h1>
+        
+    </div>
+</div>
+
+
+<div class="innercontent">
+<div class="about-section">
+<div class="container">
+<div class="row">
+
+<div class="col-md-6">
+<img src="/images/repairmen-fix-car-together.jpg"  style="height:650px; width:500px;" >
+</div>
+
+<div class="col-md-6" >
+ <h2>About Our Garage</h2>
+               <p>
+    We provide professional car servicing, repairs, advanced diagnostics, AC servicing,
+    engine repair, brake inspection, suspension work, wheel alignment, battery replacement,
+    and complete vehicle maintenance solutions. Our workshop is equipped with modern tools
+    and latest diagnostic technology to ensure accurate problem detection and reliable repairs.
+</p>
+
+<p>
+    Our experienced and certified technicians are committed to delivering high-quality service,
+    safety, and customer satisfaction. Whether it’s routine maintenance or complex mechanical
+    repairs, we focus on transparency, affordable pricing, and timely delivery so your vehicle
+    stays in peak condition and performs at its best.
+</p>
+                <a href="/about" class="readmore-btn">Read More</a>
+
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+
+<!-- SERVICES SECTION -->
+<div class="newproduct-wrapper">
+    <div class="container">
+        <h2 class="text-center">Our Services</h2>
+
+        <div class="services-scroll">
+            <div class="row services-track">
+
+                <% services.forEach(service => { %>
+
+                <div class="col-md-4 col-sm-6 service-item">
+                    <div class="newproduct-box">
+
+                        <div class="newproduct-box-pic">
+                            <img src="/uploads/services/<%= service.image %>" width="100%">
+                        </div>
+
+                        <div class="newproduct-box-content">
+                            <h4><%= service.name %></h4>
+                            <h6>₹ <%= service.price %></h6>
+                            <a href="/book-service/<%= service._id %>" class="readmore-btn">
+                                Book Now
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <% }) %>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- EXTRA SECTION 1 - WHY CHOOSE US -->
+<!-- WHY CHOOSE US SECTION -->
+<div class="whyus-section">
+    <div class="container">
+        <h2 class="whyus-title text-center">Why Choose Us</h2>
+
+        <div class="whyus-grid">
+
+            <!-- LEFT COLUMN -->
+            <div class="whyus-box">
+                <div class="whyus-icon">01</div>
+                <div>
+                    <h4>Certified Technicians</h4>
+                    <p>Highly trained professionals providing accurate diagnostics and expert repairs.</p>
+                </div>
+            </div>
+
+            <div class="whyus-box">
+                <div class="whyus-icon">02</div>
+                <div>
+                    <h4>Transparent Pricing</h4>
+                    <p>No hidden charges. Clear service details and honest cost breakdown.</p>
+                </div>
+            </div>
+
+            <div class="whyus-box">
+                <div class="whyus-icon">03</div>
+                <div>
+                    <h4>Fast Service</h4>
+                    <p>Quick turnaround time without compromising quality and safety.</p>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN -->
+            <div class="whyus-box">
+                <div class="whyus-icon">04</div>
+                <div>
+                    <h4>Modern Equipment</h4>
+                    <p>Advanced tools and technology for precise vehicle servicing.</p>
+                </div>
+            </div>
+
+            <div class="whyus-box">
+                <div class="whyus-icon">05</div>
+                <div>
+                    <h4>Customer Support</h4>
+                    <p>Friendly and responsive support team ready to assist anytime.</p>
+                </div>
+            </div>
+
+            <div class="whyus-box">
+                <div class="whyus-icon">06</div>
+                <div>
+                    <h4>Affordable Packages</h4>
+                    <p>Budget-friendly service plans for complete vehicle maintenance.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- TECHNICIANS SECTION -->
+<div class="hblogpost-section">
+    <div class="container">
+        <h2 class="text-center">Our Expert Technicians</h2>
+
+        <div class="technician-slider">
+            <div class="row technician-track">
+
+                <% technicians.forEach(tech => { %>
+
+                <div class="col-md-3 col-sm-6 technician-item">
+                    <div class="hblogpost-box text-center">
+                        <img src="/uploads/technicians/<%= tech.profileImage %>" width="100%">
+                        <h4><%= tech.name %></h4>
+                        <p><strong><%= tech.specialization %></strong></p>
+                        <p><%= tech.experience %> Years Experience</p>
+                    </div>
+                </div>
+
+                <% }) %>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- EVENTS / BLOG SECTION -->
+<div class="hblogpost-section">
+    <div class="container">
+        <h2 class="text-center">Latest News & Events</h2>
+        <div class="row">
+
+            <% events.forEach(event => { %>
+
+            <div class="col-md-4">
+                <div class="hblogpost-box">
+                    <div class="hblogpost-picture">
+                        <a href="/events-details/<%= event._id %>">
+                            <img src="<%= event.image %>" width="100%">
+                        </a>
+                    </div>
+                    <h4>
+                        <a href="/events-details/<%= event._id %>">
+                            <%= event.title %>
+                        </a>
+                    </h4>
+                    <h6><%= event.date %></h6>
+                    <p><%= event.shortDescription.substring(0,120) %>...</p>
+                </div>
+            </div>
+
+            <% }) %>
+
+        </div>
+    </div>
+</div>
+
+<!-- PREMIUM CTA SECTION -->
+<div class="cta-section">
+    <div class="container">
+        <div class="cta-box text-center">
+            <h2>Need Car Service Today?</h2>
+            <p>
+                Get professional repair, maintenance and inspection from certified experts.
+                Fast service, affordable pricing and guaranteed quality.
+            </p>
+            <a href="/service" class="cta-btn">
+                Book Appointment
+            </a>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const track = document.querySelector(".technician-track");
+    const items = document.querySelectorAll(".technician-item");
+    const totalItems = items.length;
+
+    if (totalItems > 4) {
+        track.innerHTML += track.innerHTML;
+        track.style.animation = "scrollTech 20s linear infinite";
+    }
+
+});</script>

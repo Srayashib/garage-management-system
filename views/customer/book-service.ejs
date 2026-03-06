@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Book Service</title>
+
+  <style>
+    body {
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: linear-gradient(135deg,#b5dbf5, #fccbea);
+  min-height: 100vh;
+  margin: 0;
+  padding: 40px 15px;
+  color: #2d2d2d;
+}
+
+
+    .booking-wrapper {
+  max-width: 520px;
+  margin: auto;
+  background: #ffffff;
+  padding: 32px 34px;
+  border-radius: 18px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+}
+
+
+.booking-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+/* CENTERED GRADIENT STRIP */
+.booking-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 6px;
+  width: 70%;
+  border-radius: 6px;
+  background: linear-gradient(
+    90deg,
+    #153797,
+    #5c2ab2,
+    #963063
+  );
+}
+
+
+
+
+    h2 {
+      margin-bottom: 22px;
+      font-size: 24px;
+      font-weight: 600;
+      color: #1d2671;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #555;
+    }
+
+    select,
+    input {
+      width: 90%;
+      padding: 11px 12px;
+      border-radius: 8px;
+      border: 1px solid #dcdfe6;
+      font-size: 14px;
+      margin-bottom: 18px;
+      transition: border 0.2s, box-shadow 0.2s;
+    }
+
+    select:focus,
+    input:focus {
+      outline: none;
+      border-color: #1d2671;
+      box-shadow: 0 0 0 3px rgba(29, 38, 113, 0.15);
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      background: linear-gradient(135deg, #1d2671, #c33764);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(29, 38, 113, 0.35);
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 22px;
+      text-align: center;
+      width: 100%;
+      font-size: 14px;
+      text-decoration: none;
+      color: #1d2671;
+      font-weight: 500;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 480px) {
+  .booking-wrapper {
+    padding: 24px 20px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  button {
+    font-size: 14px;
+  }
+}
+
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<body>
+
+  <div class="booking-wrapper">
+    <h2>📅 Book Service</h2>
+
+    <form method="POST" action="/book" id="bookingForm">
+
+      <input type="hidden" name="serviceId" value="<%= service._id %>">
+
+      <label>Select Vehicle</label>
+      <select name="vehicleId" required>
+        <% vehicles.forEach(v => { %>
+          <option value="<%= v._id %>">
+            <%= v.brand %> - <%= v.carNumber %>
+          </option>
+        <% }) %>
+      </select>
+
+      <label>Date</label>
+      <input type="date" name="bookingDate" required>
+
+      <label>Time</label>
+      <input type="time" name="bookingTime" required>
+
+      <button type="submit">Confirm Booking</button>
+    </form>
+
+    <a href="/dashboard" class="back-link">← Back to Dashboard</a>
+  </div>
+<script>
+  const form = document.getElementById("bookingForm");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault(); // ⛔ stop instant submit
+
+    Swal.fire({
+      icon: "success",
+      title: "Booking Confirmed 🎉",
+      text: "Your service has been booked successfully!",
+      confirmButtonColor: "#6366f1",
+      timer: 2000,
+      showConfirmButton: false
+    }).then(() => {
+      form.submit(); // ✅ submit AFTER alert
+    });
+
+  });
+</script>
+
+
+</body>
+</html>

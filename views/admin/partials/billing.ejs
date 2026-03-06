@@ -1,0 +1,140 @@
+<div class="billing-wrapper">
+
+  <div class="billing-header">
+    <h2>Billing Management</h2>
+  </div>
+
+  <div class="billing-table-container">
+    <table class="billing-table">
+      <thead>
+        <tr>
+          <th>Customer</th>
+          <th>Service</th>
+          <th>Status</th>
+          <th>Payment</th>
+          <th>Total</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% bookings.forEach(booking => { %>
+          <tr>
+            <td><%= booking.customer?.name %></td>
+            <td><%= booking.service?.name %></td>
+
+            <td>
+              <span class="status-badge <%= booking.status.toLowerCase() %>">
+                <%= booking.status %>
+              </span>
+            </td>
+
+            <td>
+              <span class="payment-badge <%= booking.paymentStatus.toLowerCase() %>">
+                <%= booking.paymentStatus %>
+              </span>
+            </td>
+
+            <td>
+              <%= booking.totalAmount ? "₹" + booking.totalAmount : "—" %>
+            </td>
+
+            <td>
+
+              <% if (
+                booking.status === "Ready" &&
+                booking.paymentStatus === "Unpaid" &&
+                !booking.billGenerated
+              ) { %>
+
+                <button class="btn-primary"
+                  onclick="openInvoiceModal('<%= booking._id %>', '<%= booking.baseAmount %>')">
+                  Generate Invoice
+                </button>
+
+              <% } %>
+
+              <% if (booking.billGenerated && booking.paymentStatus === "Unpaid") { %>
+                <form method="POST" action="/admin/billing/pay" class="inline-form">
+                  <input type="hidden" name="bookingId" value="<%= booking._id %>">
+                  <button class="btn-success">Mark Paid</button>
+                </form>
+              <% } %>
+
+              <% if (booking.paymentStatus === "Paid") { %>
+                <a href="/invoice/<%= booking._id %>" class="invoice-link">
+                  View Invoice
+                </a>
+                
+              <% } %>
+
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination">
+    <% if (currentPage > 1) { %>
+      <a href="?page=<%= currentPage - 1 %>" class="page-btn">Prev</a>
+    <% } %>
+
+    <span class="page-info">
+      Page <%= currentPage %> of <%= totalPages %>
+    </span>
+
+    <% if (currentPage < totalPages) { %>
+      <a href="?page=<%= currentPage + 1 %>" class="page-btn">Next</a>
+    <% } %>
+  </div>
+
+</div>
+
+
+<!-- ================= MODAL ================= -->
+
+<div id="invoiceModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeInvoiceModal()">&times;</span>
+
+    <h3>Generate Invoice</h3>
+
+    <form method="POST" action="/admin/billing/update">
+      <input type="hidden" name="bookingId" id="modalBookingId">
+
+      <label>Base Amount</label>
+      <input type="number" name="baseAmount" id="modalBaseAmount" readonly>
+
+      <label>Extra Charges</label>
+      <input type="number" name="extraCharges" value="0">
+
+      <label>Tax (%)</label>
+      <input type="number" name="tax" value="18">
+
+      <button type="submit" class="btn-primary full-btn">
+        Generate Bill
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+  function openInvoiceModal(id, baseAmount) {
+    document.getElementById("modalBookingId").value = id;
+    document.getElementById("modalBaseAmount").value = baseAmount;
+    document.getElementById("invoiceModal").classList.add("active");
+  }
+
+  function closeInvoiceModal() {
+    document.getElementById("invoiceModal").classList.remove("active");
+  }
+
+  window.onclick = function(event) {
+    const modal = document.getElementById("invoiceModal");
+    if (event.target === modal) {
+      modal.classList.remove("active");
+    }
+  };
+</script>

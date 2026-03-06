@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Vehicles</title>
+  <link rel="stylesheet" href="/css/vehicle.css">
+</head>
+<body>
+
+<div class="vehicle-list">
+  <h2>My Vehicles</h2>
+
+  <a href="/vehicles/add" class="add-btn">+ Add Vehicle</a>
+  <a href="/dashboard" class="back-btn">← Back to Dashboard</a>
+
+  <% if (vehicles.length === 0) { %>
+    <p>No vehicles added yet</p>
+  <% } %>
+
+  <div class="vehicle-grid">
+    <% vehicles.forEach(vehicle => { %>
+      <div class="vehicle-card">
+        <div class="vehicle-info">
+          <h3><%= vehicle.brand %> - <%= vehicle.model %></h3>
+         </div>
+
+        <!-- ✅ IMAGE -->
+        <% if (vehicle.photo) { %>
+          <img src="/uploads/vehicles/<%= vehicle.photo %>" class="vehicle-img">
+        <% } else { %>
+          <img src="/images/no-car.png" class="vehicle-img">
+        <% } %>
+
+        <!-- ✅ DETAILS -->
+        <div class="vehicle-info">
+          <p>🚗 <%= vehicle.carNumber %></p>
+          <p>⛽ <%= vehicle.fuelType %> | 📅 <%= vehicle.year %></p>
+        </div>
+
+        <!-- ✅ ACTION BUTTONS -->
+        <div class="vehicle-actions">
+          <a href="/vehicles/edit/<%= vehicle._id %>" class="edit-btn">✏ Edit</a>
+
+          <form action="/vehicles/delete/<%= vehicle._id %>" method="POST">
+            <button class="delete-btn" onclick="return confirm('Delete this vehicle?')">
+              🗑 Delete
+            </button>
+          </form>
+        </div>
+
+      </div>
+    <% }) %>
+  </div>
+
+</div>
+
+</body>
+</html>

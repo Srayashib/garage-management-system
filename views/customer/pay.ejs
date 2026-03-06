@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payment</title>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+
+
+
+<form id="successForm" action="/pay/success" method="POST">
+  <input type="hidden" name="bookingId" value="<%= booking._id %>">
+  <input type="hidden" name="razorpay_payment_id" id="payment_id">
+</form>
+
+<script>
+  const options = {
+    key: "<%= razorpayKey %>",
+    amount: "<%= order.amount %>",
+    currency: "INR",
+    name: "Garage Service",
+    description: "Service Payment",
+    order_id: "<%= order.id %>",
+
+    handler: function (response) {
+      document.getElementById("payment_id").value =
+        response.razorpay_payment_id;
+      document.getElementById("successForm").submit();
+    },
+
+    theme: {
+      color: "#F37254"
+    }
+  };
+
+  // ✅ AUTO OPEN RAZORPAY WHEN PAGE LOADS
+  window.onload = function () {
+    const rzp = new Razorpay(options);
+    rzp.open();
+  };
+</script>
+
+
+</body>
+</html>
