@@ -13,8 +13,7 @@ router.get("/", async (req, res) => {
 
   const services = await Service.find({ isActive: true }).limit(6);
   const events = await Event.find().sort({ createdAt: -1 }).limit(3);
-  const technicians = await Technician.find().limit(4);
-
+  const technicians = await Technician.find();
  res.render("pages/home", {
     services,
     events,

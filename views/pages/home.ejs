@@ -286,54 +286,41 @@
 /* ===============================
    TECHNICIAN AUTO SLIDER
 =================================*/
+/* ===============================
+   TECHNICIAN AUTO SLIDER
+=================================*/
 
-.technician-slider {
-    overflow: hidden;
-    position: relative;
+.technician-slider{
+    width:100%;
+    overflow:hidden;
+    position:relative;
 }
 
-/* FORCE technician card to always be 25% */
-
-.technician-track {
-    display: flex !important;
-    flex-wrap: nowrap !important;
+.technician-track{
+    display:flex;
+    transition:transform 0.6s ease;
 }
 
-.technician-item {
-    flex: 0 0 25% !important;
-    max-width: 25% !important;
-}
-
-@keyframes scrollTech {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
-}
-
-/* Pause on hover */
-.technician-slider:hover .technician-track {
-    animation-play-state: paused;
+.technician-item{
+    flex:0 0 calc(100% / 5);
+    padding:15px;
 }
 
 /* Responsive */
 
-@media (max-width: 992px) {
-    .technician-item {
-        flex: 0 0 50%;
-        max-width: 50%;
+@media (max-width:992px){
+    .technician-item{
+        flex:0 0 50%;
+        max-width:50%;
     }
 }
 
-@media (max-width: 576px) {
-    .technician-item {
-        flex: 0 0 100%;
-        max-width: 100%;
+@media (max-width:576px){
+    .technician-item{
+        flex:0 0 100%;
+        max-width:100%;
     }
 }
-
 /* ===============================
    CTA SECTION
 =================================*/
@@ -445,11 +432,11 @@
 =================================*/
 
 .services-scroll {
-    overflow-x: auto;
-    overflow-y: hidden;
     padding-bottom: 10px;
 }
-
+.services-scroll {
+    overflow: hidden;
+}
 .services-track {
     display: flex;
     flex-wrap: nowrap !important;
@@ -478,6 +465,15 @@
 .services-scroll::-webkit-scrollbar-thumb:hover {
     background: #000;
 }
+.services-scroll{
+    overflow:hidden;
+}
+
+.services-track{
+    display:flex;
+    transition: transform 0.5s ease;
+}
+
 
 /* Responsive */
 
@@ -552,11 +548,11 @@
         <h2 class="text-center">Our Services</h2>
 
         <div class="services-scroll">
-            <div class="row services-track">
+            <div class=" services-track">
 
                 <% services.forEach(service => { %>
 
-                <div class="col-md-4 col-sm-6 service-item">
+                <div class=" service-item">
                     <div class="newproduct-box">
 
                         <div class="newproduct-box-pic">
@@ -650,11 +646,11 @@
         <h2 class="text-center">Our Expert Technicians</h2>
 
         <div class="technician-slider">
-            <div class="row technician-track">
+            <div class="technician-track">
 
                 <% technicians.forEach(tech => { %>
 
-                <div class="col-md-3 col-sm-6 technician-item">
+                <div class="technician-item">
                     <div class="hblogpost-box text-center">
                         <img src="/uploads/technicians/<%= tech.profileImage %>" width="100%">
                         <h4><%= tech.name %></h4>
@@ -719,17 +715,55 @@
 </div>
 
 <%- include('../partials/footer') %>
-
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-    const track = document.querySelector(".technician-track");
-    const items = document.querySelectorAll(".technician-item");
-    const totalItems = items.length;
+    /* SERVICES SLIDER */
 
-    if (totalItems > 4) {
-        track.innerHTML += track.innerHTML;
-        track.style.animation = "scrollTech 20s linear infinite";
+    const serviceTrack = document.querySelector(".services-track");
+    const serviceItems = document.querySelectorAll(".service-item");
+
+    let serviceIndex = 0;
+    const visibleServices = 3;
+
+    setInterval(() => {
+
+        serviceIndex++;
+
+        if(serviceIndex > serviceItems.length - visibleServices){
+            serviceIndex = 0;
+        }
+
+        const move = serviceIndex * (100 / visibleServices);
+
+        serviceTrack.style.transform = `translateX(-${move}%)`;
+
+    }, 4000);
+
+
+
+    const techTrack = document.querySelector(".technician-track");
+const techItems = document.querySelectorAll(".technician-item");
+
+let techIndex = 0;
+const visibleTech = 4;
+const totalTech = techItems.length;
+
+/* make track wide enough */
+techTrack.style.width = (totalTech * 100 / visibleTech) + "%";
+
+setInterval(() => {
+
+    techIndex++;
+
+    if (techIndex > totalTech - visibleTech) {
+        techIndex = 0;
     }
 
-});</script>
+    const move = techIndex * (100 / visibleTech);
+
+    techTrack.style.transform = `translateX(-${move}%)`;
+
+}, 3000);
+});
+</script>
