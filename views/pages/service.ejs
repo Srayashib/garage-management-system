@@ -9,9 +9,10 @@
     background: #fff;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     margin-bottom: 30px;
     transition: 0.3s ease;
+    border: 1px skyblue solid;
 }
 
 .service-card:hover {
@@ -99,6 +100,16 @@
 .image-overlay-wrapper:hover .image-dark-overlay {
     background: rgba(0, 0, 0, 0.6);
 }
+.innercontent h3
+{
+    font-size: 21px !important;
+    line-height: 34px;
+    font-weight: 900;
+    color: #000;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
 </style>
 <%- include('../partials/header', { title: "Our Services" }) %>
 
@@ -135,14 +146,11 @@
                             ₹ <%= service.price %>
                         </h4>
 
-                        <p>
-                            Professional and reliable service for your vehicle.
-                            Quality work with expert technicians.
-                        </p>
+                        
 
-                        <a href="/book-service/<%= service._id %>" class="service-btn">
-                            Book Now
-                        </a>
+                        <a href="/book/<%= service._id %>" class="service-btn">
+    Book Now
+</a>
                     </div>
 
                 </div>

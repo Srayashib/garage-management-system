@@ -56,35 +56,31 @@
             </span>
           </div>
 
-          <!-- ✅ TOGGLE WITH ALERT -->
-          <a href="/admin/services/toggle/<%= service._id %>"
-             class="toggle-btn"
-             onclick="return confirmToggle(event, this)">
-            Toggle
-          </a>
-
           <div class="service-actions">
 
-            <!-- ✅ EDIT INFO ALERT -->
-            <a href="/admin/services/edit/<%= service._id %>"
-               class="edit-btn"
-               onclick="return confirmEdit(event, this)">
-              Edit
-            </a>
+  <a href="/admin/services/edit/<%= service._id %>"
+     class="edit-btn"
+     onclick="return confirmEdit(event, this)">
+    Edit
+  </a>
 
-            <form action="/admin/services/delete/<%= service._id %>"
-                  method="POST"
-                  class="delete-form">
+  <form action="/admin/services/delete/<%= service._id %>"
+        method="POST"
+        class="delete-form">
+    <button type="button"
+            class="delete-btn"
+            onclick="confirmDelete(this)">
+      Delete
+    </button>
+  </form>
 
-              <button type="button"
-                      class="delete-btn"
-                      onclick="confirmDelete(this)">
-                Delete
-              </button>
+  <a href="/admin/services/toggle/<%= service._id %>"
+     class="toggle-btn"
+     onclick="return confirmToggle(event, this)">
+    Toggle
+  </a>
 
-            </form>
-
-          </div>
+</div>
 
         </div>
       <% }) %>
