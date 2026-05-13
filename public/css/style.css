@@ -267,7 +267,7 @@ html{overflow-x:hidden;}
 .footer-social ul li a:hover{color:#ff5501;}
 
 .fsearch{margin:0px 0 30px; padding:3px; border:#333333 solid 1px; border-radius:30px;}
-.fsearch input[type="email"]{margin:0px; padding:0px 0 0 6%; width:65%; display:inline-block; vertical-align:middle; border:0px; font-size:16px; line-height:56px; font-weight:400; color:#000; border-top-left-radius:30px; border-bottom-left-radius:30px; background:none;}
+.fsearch input[type="email"]{margin:0px; padding:0px 0 0 6%; width:55%; display:inline-block; vertical-align:middle; border:0px; font-size:16px; line-height:56px; font-weight:400; color:#000; border-top-left-radius:30px; border-bottom-left-radius:30px; background:none;}
 .fsearch input[type="submit"]{display:inline-block; vertical-align:middle; width:34%; text-align:center; font-size:16px; line-height:56px; font-weight:600; color:#fff; border:none; background:#ff5501; border-radius:30px; text-transform:uppercase;}
 
 .copyright{margin:0px; padding:15px 0px; width:100%; text-align:center; background:#fff;}

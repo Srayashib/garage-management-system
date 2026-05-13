@@ -1,27 +1,57 @@
 <style>
-    /* Newsletter Subscribe Button Only */
 
-.fsearch button {
-  padding: 12px 26px;
-  border-radius: 30px;
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  background: linear-gradient(135deg, #ff416c, #ff4b2b);
-  color: #fff;
-  transition: all 0.3s ease;
+/* Newsletter form layout */
+.fsearch{
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
-.fsearch button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(255, 65, 108, 0.4);
+/* Email input */
+.fsearch input{
+  flex:1;
+  padding:12px 15px;
+  border-radius:30px;
+  border:1px solid #ddd;
+  outline:none;
+  font-size:14px;
 }
 
-.fsearch button:active {
-  transform: scale(0.97);
+/* Button style (your existing style kept) */
+.fsearch button{
+  padding:12px 26px;
+  border-radius:30px;
+  border:none;
+  cursor:pointer;
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:0.5px;
+  background:linear-gradient(135deg,#ff416c,#ff4b2b);
+  color:#fff;
+  transition:all 0.3s ease;
+  white-space:nowrap;
 }
+
+/* Mobile fix */
+@media (max-width:576px){
+
+  .fsearch{
+    display:flex;
+    flex-wrap:nowrap; /* prevent button from going down */
+  }
+
+  .fsearch input{
+    font-size:13px;
+    padding:10px 12px;
+  }
+
+  .fsearch button{
+    padding:10px 16px;
+    font-size:13px;
+  }
+
+}
+
 </style><div class="footer">
     <div class="container">
         <div class="row footer-row">
@@ -31,7 +61,8 @@
                     <ul>
                         <li>
   <i class="fas fa-map-marker-alt"></i>
-  1201 Brickell Ave, Suite 2300, Miami, FL 33131, United States
+  Shop No. 1, Narmada Building, near Bhujale Talao,
+10, Chincholi Bunder Road, Malad West, Mumbai, Maharashtra – 400064
 </li>
 
 <li>
@@ -94,7 +125,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <p>&copy; Copyright 2019. All rights reserved.</p>
+                <p>&copy; Copyright 2026. All rights reserved.</p>
             </div>
         </div>
     </div>

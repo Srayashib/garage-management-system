@@ -60,11 +60,13 @@ body {
 }
 body {
   background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  height: 100vh;
-  overflow: hidden;   /* 🔥 prevents full page scroll */
+    /* 🔥 prevents full page scroll */
   color: #fff;
 }
-
+body{
+  min-height:100vh;
+  overflow-x:hidden;
+}
 
 /* Layout */
 .admin-layout {
@@ -1029,4 +1031,79 @@ body {
     color: #aaa;
     margin-bottom: 4px;
   }
+}
+@media (max-width:768px){
+
+/* Sidebar becomes horizontal bar */
+.sidebar{
+  width:100%;
+  flex-direction:row;
+  align-items:center;
+  padding:12px 15px;
+  gap:10px;
+}
+
+/* Menu scroll container */
+.menu{
+  position:relative;
+  display:flex;
+  flex-direction:row;
+  gap:8px;
+  overflow-x:auto;
+  white-space:nowrap;
+  flex:1;
+  scrollbar-width:none;
+}
+
+.menu::-webkit-scrollbar{
+  display:none;
+}
+
+/* Fade indicator */
+.menu::after{
+  content:"";
+  position:absolute;
+  right:0;
+  top:0;
+  height:100%;
+  width:30px;
+  pointer-events:none;
+  background:linear-gradient(to right, transparent, rgba(0,0,0,0.6));
+}
+
+/* Logout stays at right */
+.logout-link{
+  flex:0 0 auto;
+  margin-left:10px;
+  padding:8px 12px;
+  font-size:13px;
+}
+
+}
+@media (max-width:768px){
+
+.charts-section{
+  flex-direction:column;
+  gap:20px;
+}
+
+.chart-box:first-child{
+  width:100%;
+}
+
+.chart-box canvas{
+  height:250px !important;
+}
+
+}
+@media (max-width:480px){
+
+.stats-grid{
+  grid-template-columns:1fr;
+}
+
+.stat-number{
+  font-size:30px;
+}
+
 }

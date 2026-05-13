@@ -1,4 +1,41 @@
-<div class="subscribers-wrapper">
+<style>
+@media (max-width:768px){
+
+/* Restore table layout */
+.subscribers-table{
+  display:table !important;
+  min-width:600px;
+}
+
+.subscribers-table thead{
+  display:table-header-group !important;
+}
+
+.subscribers-table tbody{
+  display:table-row-group !important;
+}
+
+.subscribers-table tr{
+  display:table-row !important;
+}
+
+.subscribers-table td,
+.subscribers-table th{
+  display:table-cell !important;
+  white-space:nowrap;
+}
+.subscribers-table td,
+.subscribers-table th {
+    padding: 12px 15px;
+}
+/* Enable horizontal scroll */
+.subscribers-table-container{
+  overflow-x:auto;
+  width:100%;
+}
+
+}
+</style><div class="subscribers-wrapper">
   <h2>Newsletter Subscribers</h2>
 
   <div class="subscribers-table-container">

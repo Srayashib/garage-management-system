@@ -302,7 +302,7 @@
 }
 
 .technician-item{
-    flex:0 0 calc(100% / 5);
+    flex:0 0 calc(100% / 4);
     padding:15px;
 }
 
@@ -490,6 +490,29 @@
         max-width: 100%;
     }
 }
+@media (max-width:768px){
+
+.about-section{
+    padding:40px 15px;
+}
+
+.about-section img{
+    width:100% !important;
+    height:auto !important;
+    max-width:100%;
+    margin-bottom:20px;
+}
+
+.about-section .row{
+    display:flex;
+    flex-direction:column;
+}
+
+}
+.hblogpost-box {
+    margin: 0 auto 20px;
+    padding: 14px !important;
+}
 </style>
 <%- include('../partials/header', { title: "Garage Service Home" }) %>
 
@@ -656,7 +679,7 @@
                         <img src="/uploads/technicians/<%= tech.profileImage %>" width="100%">
                         <h4><%= tech.name %></h4>
                         <p><strong><%= tech.specialization %></strong></p>
-                        <p><%= tech.experience %> Years Experience</p>
+                       <p style="margin-bottom:15px;"><%= tech.experience %> Years Experience</p>
                     </div>
                 </div>
 
@@ -719,45 +742,57 @@
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-    /* SERVICES SLIDER */
+function getVisibleServices(){
+    if(window.innerWidth <= 576) return 1;
+    if(window.innerWidth <= 992) return 2;
+    return 3;
+}
 
-    const serviceTrack = document.querySelector(".services-track");
-    const serviceItems = document.querySelectorAll(".service-item");
+function getVisibleTech(){
+    if(window.innerWidth <= 576) return 1;
+    if(window.innerWidth <= 992) return 2;
+    return 4;
+}
 
-    let serviceIndex = 0;
-    const visibleServices = 3;
+/* SERVICES SLIDER */
 
-    setInterval(() => {
+const serviceTrack = document.querySelector(".services-track");
+const serviceItems = document.querySelectorAll(".service-item");
 
-        serviceIndex++;
-
-        if(serviceIndex > serviceItems.length - visibleServices){
-            serviceIndex = 0;
-        }
-
-        const move = serviceIndex * (100 / visibleServices);
-
-        serviceTrack.style.transform = `translateX(-${move}%)`;
-
-    }, 4000);
-
-
-
-    const techTrack = document.querySelector(".technician-track");
-const techItems = document.querySelectorAll(".technician-item");
-
-let techIndex = 0;
-const visibleTech = 4;
-const totalTech = techItems.length;
-
-/* make track wide enough */
-techTrack.style.width = (totalTech * 100 / visibleTech) + "%";
+let serviceIndex = 0;
 
 setInterval(() => {
 
+    const visibleServices = getVisibleServices();
+
+    serviceIndex++;
+
+    if(serviceIndex > serviceItems.length - visibleServices){
+        serviceIndex = 0;
+    }
+
+    const move = serviceIndex * (100 / visibleServices);
+
+    serviceTrack.style.transform = `translateX(-${move}%)`;
+
+}, 3500);
+
+
+
+/* TECHNICIAN SLIDER */
+
+const techTrack = document.querySelector(".technician-track");
+const techItems = document.querySelectorAll(".technician-item");
+
+let techIndex = 0;
+
+setInterval(() => {
+
+    const visibleTech = getVisibleTech();
+
     techIndex++;
 
-    if (techIndex > totalTech - visibleTech) {
+    if (techIndex > techItems.length - visibleTech) {
         techIndex = 0;
     }
 
@@ -766,5 +801,6 @@ setInterval(() => {
     techTrack.style.transform = `translateX(-${move}%)`;
 
 }, 3000);
+
 });
 </script>

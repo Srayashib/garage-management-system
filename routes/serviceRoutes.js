@@ -39,7 +39,7 @@ router.post("/admin/services/delete/:id", isAuthenticated, deleteService);
 
 
 /* CUSTOMER */
-router.get("/services", isAuthenticated, customerServicesPage);
+router.get("/dashboard/services", isAuthenticated, customerServicesPage);
 
 
 export default router;

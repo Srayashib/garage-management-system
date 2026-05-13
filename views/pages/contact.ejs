@@ -36,6 +36,87 @@
         font-size: 28px;
     }
 }
+/* ================================= */
+/* Extra Mobile Responsive Fix       */
+/* ================================= */
+
+@media (max-width: 992px){
+
+    .contactpage{
+        display:flex;
+        flex-direction:column;
+        gap:25px;
+    }
+
+    .contactpage .col-md-4,
+    .contactpage .col-md-7{
+        width:100%;
+    }
+
+}
+
+/* Mobile */
+@media (max-width: 768px){
+
+    .innercontent{
+        padding:20px 15px;
+    }
+
+    .contactpage h2{
+        font-size:24px;
+        margin-bottom:15px;
+    }
+
+    .contact-block{
+        margin-bottom:15px;
+    }
+
+    .contact-block h4{
+        font-size:16px;
+    }
+
+    .contact-block p{
+        font-size:14px;
+    }
+
+    /* FORM MOBILE BORDER */
+    .contactform{
+        border:2px solid #e6e6e6;
+        padding:20px;
+        border-radius:10px;
+        background:#fff;
+        box-shadow:0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .form-control{
+        font-size:14px;
+        padding:10px;
+    }
+
+    textarea.form-control{
+        min-height:120px;
+    }
+
+    .btn-primary{
+        width:100%;
+        padding:12px;
+        font-size:15px;
+    }
+
+}
+
+/* Small Mobile */
+@media (max-width: 480px){
+
+    .innerbanner-caption h1{
+        font-size:22px;
+    }
+
+    .contactform{
+        padding:15px;
+    }
+
+}
 </style><%- include('../partials/header', { title: "Contact FGarage" }) %>
 
 <!-- Banner -->
