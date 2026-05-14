@@ -31,8 +31,9 @@ const __dirname = path.dirname(__filename);
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 
+
 app.use(express.static(path.join(__dirname, "public")));
-app.use("/uploads", express.static("public/uploads"));
+app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
 
 app.use(session({
   secret: process.env.SESSION_SECRET,
@@ -64,11 +65,11 @@ app.use(billingRoutes);
 app.use(paymentRoutes);
 app.use(invoiceRoutes);
 app.use(technicianRoutes);
-app.use(express.static("public"));
 app.use(pageRoutes);
-app.use(express.urlencoded({ extended: true }));
 app.use(eventRoutes);
-
+app.use((req, res) => {
+  res.status(404).render("pages/home");
+});
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
